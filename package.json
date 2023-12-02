@@ -1,0 +1,42 @@
+{
+  "name": "reg-reports",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@cap-js/graphql": "^0.9.0",
+    "@sap-cloud-sdk/http-client": "^3.8.1",
+    "@sap-cloud-sdk/resilience": "^3.8.1",
+    "@sap/cds": "^7",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@sap/ux-specification": "^1.120.0",
+    "eslint": "^8.55.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-reg-reports": "cds watch --open reg-reports/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "db.sqlite"
+        }
+      },
+      "API_TICKETS": {
+        "kind": "odata-v2",
+        "model": "srv/external/API_TICKETS"
+      }
+    }
+  },
+  "sapux": [
+    "app/reg-reports",
+    "app/react-reports"
+  ]
+}

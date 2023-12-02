@@ -1,0 +1,6812 @@
+{
+ "meta": {
+  "creator": "cds-dk 7.4.0"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "API_TICKETS": {
+   "kind": "service",
+   "@cds.external": true,
+   "@m.IsDefaultEntityContainer": "true"
+  },
+  "API_TICKETS.tblCommesseDate": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessaData": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "DataDa": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataA": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Tipologia": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Visibile": {
+     "type": "cds.Boolean"
+    },
+    "tblCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblCommesse",
+     "on": [
+      {
+       "ref": [
+        "tblCommesse",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblCommesseDateTipologia": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessaDataTipologia": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Tipologia": {
+     "type": "cds.String",
+     "length": 150
+    }
+   }
+  },
+  "API_TICKETS.tblFestivi": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDFestivo": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Giorno": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    }
+   }
+  },
+  "API_TICKETS.tblAbbonamenti": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDAbbonamento": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Fornitore": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Descrizione": {
+     "type": "cds.LargeString"
+    },
+    "DataScadenza": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Prezzo": {
+     "type": "cds.LargeString"
+    },
+    "Note": {
+     "type": "cds.LargeString"
+    },
+    "Attivo": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblAreeFunzionali": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDAreaFunzionale": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 150
+    }
+   }
+  },
+  "API_TICKETS.tblAttivita": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDAttivita": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Codice": {
+     "type": "cds.Integer"
+    },
+    "Attivita": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Posizione": {
+     "type": "cds.Integer"
+    },
+    "CodiceICMS": {
+     "type": "cds.Integer"
+    },
+    "DaCopiare": {
+     "type": "cds.Boolean"
+    },
+    "tblAttivitaCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblAttivitaCommesse",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblAttivitaCommesse",
+        "IDAttivita"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDAttivita"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblAttivitaCommesse": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDAttivita": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Posizione": {
+     "type": "cds.Integer"
+    },
+    "tblAttivita": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblAttivita",
+     "on": [
+      {
+       "ref": [
+        "tblAttivita",
+        "IDAttivita"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDAttivita"
+       ]
+      }
+     ]
+    },
+    "tblCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblCommesse",
+     "on": [
+      {
+       "ref": [
+        "tblCommesse",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblBugs": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDBug": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "Status": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.tblClienti": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCliente": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Password": {
+     "type": "cds.LargeString"
+    },
+    "GiorniProgettoAnno": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniFunzionaleAnno": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniSviluppoAnno": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Revisione": {
+     "type": "cds.Boolean"
+    },
+    "SapCodice": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Logo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Scheda": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Account": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "tblCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblCommesse",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblCommesse",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    },
+    "tblRapportini": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblRapportini",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblRapportini",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    },
+    "tblTodoList": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblTodoList",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblTodoList",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    },
+    "tblMacroCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblMacroCommesse",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblMacroCommesse",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblClientiAreeFunzionali": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDClienteAreaFunzionale": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "EmailList": {
+     "type": "cds.String",
+     "length": 4000
+    },
+    "FlagAms": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblClientiLogin": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDClienteLogin": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCliente": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "Nominativo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Email": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Pwd": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Gruppo": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Livello": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Autorizzazioni": {
+     "type": "cds.LargeString"
+    },
+    "Attivo": {
+     "type": "cds.Boolean"
+    },
+    "EmailList": {
+     "type": "cds.String",
+     "length": 4000
+    }
+   }
+  },
+  "API_TICKETS.tblClientiSedi": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDClienteSede": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "CodiceSede": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Sede": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Km": {
+     "type": "cds.Integer"
+    },
+    "Pedaggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    }
+   }
+  },
+  "API_TICKETS.tblCommesse": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "MacroCommessa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Stato": {
+     "type": "cds.Integer"
+    },
+    "DataInizio": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataFine": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataGolive": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "RifCliente": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifProgetto": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifFunzionale": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifTecnico": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniProgetto": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniFunzionale": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniSviluppo": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Note": {
+     "type": "cds.LargeString"
+    },
+    "Pianificabile": {
+     "type": "cds.Boolean"
+    },
+    "VisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "CodiceICMS": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "SapOdv": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Tipologia": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Categoria": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FixOrTimeMaterial": {
+     "type": "cds.String",
+     "length": 2
+    },
+    "tblClienti": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblClienti",
+     "on": [
+      {
+       "ref": [
+        "tblClienti",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    },
+    "tblCommesseDate": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblCommesseDate",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblCommesseDate",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    },
+    "tblRapportini": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblRapportini",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblRapportini",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    },
+    "tblTodoList": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblTodoList",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblTodoList",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    },
+    "tblRisorseAllocazione": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblRisorseAllocazione",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblRisorseAllocazione",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    },
+    "tblAttivitaCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblAttivitaCommesse",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblAttivitaCommesse",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblComunicazioni": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDComunicazione": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 500
+    },
+    "DataScadenza": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Attivo": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblConfig": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDConfig": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Chiave": {
+     "type": "cds.String",
+     "length": 50,
+     "notNull": true
+    },
+    "Valore": {
+     "type": "cds.String",
+     "length": 500
+    }
+   }
+  },
+  "API_TICKETS.tblCoordinatori": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCoordinatore": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Coordinatore": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Risorsa": {
+     "type": "cds.String",
+     "length": 50
+    }
+   }
+  },
+  "API_TICKETS.tblDocumenti": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDDocumento": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Tipologia": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    }
+   }
+  },
+  "API_TICKETS.tblFerie": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDFerie": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "DataDal": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataAl": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "GiorniLavorativi": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "UtenteAdmin": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Approvato": {
+     "type": "cds.Boolean"
+    },
+    "DataApprovazione": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Causa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "ApprovatoDa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "DataLetturaApprovazione": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Firma": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    }
+   }
+  },
+  "API_TICKETS.tblIdeas": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDIdea": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "Status": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.tblLog": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDLog": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Message": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "API_TICKETS.tblLogEmail": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDLogEmail": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "MailFrom": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "MailTo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Subject": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Body": {
+     "type": "cds.LargeString"
+    }
+   }
+  },
+  "API_TICKETS.tblMacroCommesse": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDMacroCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "MacroCommessa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "Attivita": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "DataInizio": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataFine": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GGTot": {
+     "type": "cds.Integer"
+    },
+    "Responsabile": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Stato": {
+     "type": "cds.Integer"
+    },
+    "Bloccato": {
+     "type": "cds.Boolean"
+    },
+    "tblMacroCommesseDate": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblMacroCommesseDate",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblMacroCommesseDate",
+        "IDMacroCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDMacroCommessa"
+       ]
+      }
+     ]
+    },
+    "tblClienti": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblClienti",
+     "on": [
+      {
+       "ref": [
+        "tblClienti",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblPrenotazioneMateriale": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDPrenotazione": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Materiale": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Dal": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Al": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "Status": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.tblRapportini": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRapportino": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDUtente": {
+     "type": "cds.Integer"
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "IDClienteSede": {
+     "type": "cds.Integer"
+    },
+    "IDProgetto": {
+     "type": "cds.Integer"
+    },
+    "IDProgettoAttivita": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Attivita": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Sede": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Destinazione": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Giorno": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Ore": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "OreLavorate": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Km": {
+     "type": "cds.Integer"
+    },
+    "KmEuro": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Pedaggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Forfait": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Vitto": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Alloggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Noleggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Trasporti": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Varie": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Plus": {
+     "type": "cds.Boolean"
+    },
+    "Fatturabile": {
+     "type": "cds.Boolean"
+    },
+    "Bloccato": {
+     "type": "cds.Boolean"
+    },
+    "SpeseVarie": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Docente": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "IDCommessa2": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList2": {
+     "type": "cds.Integer"
+    },
+    "Ore2": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Descrizione2": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "BloccatoAdmin": {
+     "type": "cds.Boolean"
+    },
+    "tblClienti": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblClienti",
+     "on": [
+      {
+       "ref": [
+        "tblClienti",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    },
+    "tblCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblCommesse",
+     "on": [
+      {
+       "ref": [
+        "tblCommesse",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    },
+    "tblClientiSedi": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblClientiSedi",
+     "on": [
+      {
+       "ref": [
+        "tblClientiSedi",
+        "IDClienteSede"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDClienteSede"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblRisorse": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRisorsa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Risorsa": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Login": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Email": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Efficienza": {
+     "type": "cds.Decimal",
+     "precision": 5,
+     "scale": 2
+    },
+    "Tempo": {
+     "type": "cds.Decimal",
+     "precision": 5,
+     "scale": 2
+    },
+    "GiorniForfait": {
+     "type": "cds.Integer"
+    },
+    "TipoAuto": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "LoginICMS": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "Supervisore": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Alert": {
+     "type": "cds.Boolean"
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    },
+    "NotaSpese": {
+     "type": "cds.Boolean"
+    },
+    "SapCodice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "SapCentroDiCosto": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "ElaborazionePaga": {
+     "type": "cds.Boolean"
+    },
+    "Foto": {
+     "type": "cds.String",
+     "length": 200
+    },
+    "Tel1": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "Tel2": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "Tel3": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "AreeFunzionali": {
+     "type": "cds.String",
+     "length": 200
+    },
+    "Attivo": {
+     "type": "cds.Boolean"
+    },
+    "PresenzeRapportini": {
+     "type": "cds.Boolean"
+    },
+    "RisorsaOrdinamento": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Permessi": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "MatricolaCedolino": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "NomePc": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Costo": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 0
+    },
+    "DataFineRapporto": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "tblSocieta": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblSocieta",
+     "on": [
+      {
+       "ref": [
+        "tblSocieta",
+        "IDSocieta"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDRisorsa"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblRisorseAllocazione": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRisorsaAllocazione": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "MacroCommessa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Giorni": {
+     "type": "cds.Integer"
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Mese": {
+     "type": "cds.Integer"
+    },
+    "Anno": {
+     "type": "cds.Integer"
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "tblClienti": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblClienti",
+     "on": [
+      {
+       "ref": [
+        "tblClienti",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    },
+    "tblCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblCommesse",
+     "on": [
+      {
+       "ref": [
+        "tblCommesse",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblSkills": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDSkill": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Skill": {
+     "type": "cds.String",
+     "length": 150
+    }
+   }
+  },
+  "API_TICKETS.tblSkillsRisorse": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDSkillRisorsa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDSkill": {
+     "type": "cds.Integer"
+    },
+    "IDRisorsa": {
+     "type": "cds.Integer"
+    },
+    "Efficienza": {
+     "type": "cds.Decimal",
+     "precision": 5,
+     "scale": 2
+    }
+   }
+  },
+  "API_TICKETS.tblSocieta": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDSocieta": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Societa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "tblRisorse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblRisorse",
+     "on": [
+      {
+       "ref": [
+        "tblRisorse",
+        "IDRisorsa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDSocieta"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblTempTodoList": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagVisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "DataProduzione": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagBugFix": {
+     "type": "cds.Boolean"
+    },
+    "GiorniConsCliente": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "ChatPubblica": {
+     "type": "cds.LargeString"
+    },
+    "AssegnatoAPrev": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagCR": {
+     "type": "cds.Boolean"
+    },
+    "FlagArxivar": {
+     "type": "cds.Boolean"
+    },
+    "IDTodoListParent": {
+     "type": "cds.Integer"
+    },
+    "ChatPrivata": {
+     "type": "cds.LargeString"
+    },
+    "DataSpecifiche": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GiorniConsDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "Confermato": {
+     "type": "cds.Boolean"
+    },
+    "CodCliente": {
+     "type": "cds.String",
+     "length": 255
+    },
+    "CodCommessa": {
+     "type": "cds.String",
+     "length": 255
+    },
+    "GiorniStimaDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniConsFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataSviluppi": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagFunz": {
+     "type": "cds.Boolean"
+    },
+    "Criticita": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "FlagPadre": {
+     "type": "cds.Boolean"
+    },
+    "FlagFiglio": {
+     "type": "cds.Boolean"
+    },
+    "NRilavorazioni": {
+     "type": "cds.Integer"
+    },
+    "SupportoFunzionale": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagNeedDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagNeedFunz": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblTodoList": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagVisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "DataProduzione": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagBugFix": {
+     "type": "cds.Boolean"
+    },
+    "GiorniConsCliente": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "ChatPubblica": {
+     "type": "cds.LargeString"
+    },
+    "AssegnatoAPrev": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagCR": {
+     "type": "cds.Boolean"
+    },
+    "FlagArxivar": {
+     "type": "cds.Boolean"
+    },
+    "IDTodoListParent": {
+     "type": "cds.Integer"
+    },
+    "ChatPrivata": {
+     "type": "cds.LargeString"
+    },
+    "DataSpecifiche": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GiorniConsDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniConsFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataSviluppi": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagFunz": {
+     "type": "cds.Boolean"
+    },
+    "Criticita": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "FlagPadre": {
+     "type": "cds.Boolean"
+    },
+    "FlagFiglio": {
+     "type": "cds.Boolean"
+    },
+    "NRilavorazioni": {
+     "type": "cds.Integer"
+    },
+    "SupportoFunzionale": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagNeedDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagNeedFunz": {
+     "type": "cds.Boolean"
+    },
+    "FlagIngegnerizzabile": {
+     "type": "cds.Boolean"
+    },
+    "NAllegati": {
+     "type": "cds.Integer"
+    },
+    "OrdineSap": {
+     "type": "cds.String",
+     "length": 40
+    },
+    "UltimaModifica": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "UltimaModificaUtente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "UltimaModificaCliente": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "UltimaModificaUtenteCliente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagAms": {
+     "type": "cds.Boolean"
+    },
+    "IDTodoListTipologia": {
+     "type": "cds.Integer"
+    },
+    "InoltraA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "MessageID": {
+     "type": "cds.String",
+     "length": 255
+    },
+    "tblTodoListAllegati": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblTodoListAllegati",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblTodoListAllegati",
+        "IDTodoList"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDTodoList"
+       ]
+      }
+     ]
+    },
+    "tblTodoListAssegnatoA": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblTodoListAssegnatoA",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblTodoListAssegnatoA",
+        "IDTodoList"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDTodoList"
+       ]
+      }
+     ]
+    },
+    "tblCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblCommesse",
+     "on": [
+      {
+       "ref": [
+        "tblCommesse",
+        "IDCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCommessa"
+       ]
+      }
+     ]
+    },
+    "tblClienti": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblClienti",
+     "on": [
+      {
+       "ref": [
+        "tblClienti",
+        "IDCliente"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDCliente"
+       ]
+      }
+     ]
+    },
+    "tblTodoListStatus": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblTodoListStatus",
+     "on": [
+      {
+       "ref": [
+        "tblTodoListStatus",
+        "IDTodoListStatus"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "Status"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListAllegati": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListAllegato": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "VisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "FileName": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "MimeType": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "InsertDate": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Docnumberarx5": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Docnumberarxnext": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "tblTodoList": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblTodoList",
+     "on": [
+      {
+       "ref": [
+        "tblTodoList",
+        "IDTodoList"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDTodoList"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListAssegnatoA": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListAssegnatoA": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDTodoList": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 50,
+     "notNull": true
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataInizio": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataFine": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Avanzamento": {
+     "type": "cds.Integer"
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Responsabile": {
+     "type": "cds.Boolean"
+    },
+    "Completato": {
+     "type": "cds.Boolean"
+    },
+    "Standby": {
+     "type": "cds.Boolean"
+    },
+    "tblTodoList": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblTodoList",
+     "on": [
+      {
+       "ref": [
+        "tblTodoList",
+        "IDTodoList"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDTodoList"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListAssegnatoAChangeLog": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListAssegnatoAChangeLog": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDTodoListAssegnatoA": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDTodoList": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 50,
+     "notNull": true
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataInizio": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataFine": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Avanzamento": {
+     "type": "cds.Integer"
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Responsabile": {
+     "type": "cds.Boolean"
+    },
+    "UpdateDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "UpdateUtente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Completato": {
+     "type": "cds.Boolean"
+    },
+    "Standby": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListAssegnatoATmp": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListAssegnatoA": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDTodoList": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 50,
+     "notNull": true
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataInizio": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataFine": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Avanzamento": {
+     "type": "cds.Integer"
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Responsabile": {
+     "type": "cds.Boolean"
+    },
+    "Completato": {
+     "type": "cds.Boolean"
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "RefCounter": {
+     "type": "cds.Integer"
+    },
+    "Standby": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListChangeLog": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListChangeLog": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagVisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "UpdateDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "UpdateUtente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "DataProduzione": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagBugFix": {
+     "type": "cds.Boolean"
+    },
+    "GiorniConsCliente": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "ChatPubblica": {
+     "type": "cds.LargeString"
+    },
+    "AssegnatoAPrev": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagCR": {
+     "type": "cds.Boolean"
+    },
+    "ChatPrivata": {
+     "type": "cds.LargeString"
+    },
+    "DataSpecifiche": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GiorniConsDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniConsFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataSviluppi": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagFunz": {
+     "type": "cds.Boolean"
+    },
+    "Criticita": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "FlagPadre": {
+     "type": "cds.Boolean"
+    },
+    "FlagFiglio": {
+     "type": "cds.Boolean"
+    },
+    "NRilavorazioni": {
+     "type": "cds.Integer"
+    },
+    "SupportoFunzionale": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagNeedDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagNeedFunz": {
+     "type": "cds.Boolean"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "IDTodoListParent": {
+     "type": "cds.Integer"
+    },
+    "FlagArxivar": {
+     "type": "cds.Boolean"
+    },
+    "FlagIngegnerizzabile": {
+     "type": "cds.Boolean"
+    },
+    "NAllegati": {
+     "type": "cds.Integer"
+    },
+    "SentTo": {
+     "type": "cds.String",
+     "length": 2000
+    },
+    "OrdineSap": {
+     "type": "cds.String",
+     "length": 40
+    },
+    "FlagAms": {
+     "type": "cds.Boolean"
+    },
+    "IDTodoListTipologia": {
+     "type": "cds.Integer"
+    },
+    "InoltraA": {
+     "type": "cds.String",
+     "length": 250
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListQualita": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListQualita": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDTodoList": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "UpdateDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "Giudizio": {
+     "type": "cds.Integer"
+    },
+    "Tipologia": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListRuoli": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListRuolo": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Occupazione": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListWorkflow": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListWorkflow": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Regola": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FromStatus": {
+     "type": "cds.Integer"
+    },
+    "ToStatus": {
+     "type": "cds.Integer"
+    },
+    "EmailUtente": {
+     "type": "cds.Boolean"
+    },
+    "EmailAssegnatoA": {
+     "type": "cds.Boolean"
+    },
+    "EmailDevAdmin": {
+     "type": "cds.Boolean"
+    },
+    "EmailPM": {
+     "type": "cds.Boolean"
+    },
+    "EmailCliente": {
+     "type": "cds.Boolean"
+    },
+    "EmailClienteAdminPlant": {
+     "type": "cds.Boolean"
+    },
+    "EmailClienteAdminArea": {
+     "type": "cds.Boolean"
+    },
+    "Template": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "TemplateCliente": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "EmailClientePlant": {
+     "type": "cds.Boolean"
+    },
+    "CampiOsservati": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "ApertoCliente": {
+     "type": "cds.Boolean"
+    },
+    "ApertoInterno": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblVarianti": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDVariante": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Variante": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Tabella": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Data": {
+     "type": "cds.LargeString"
+    },
+    "Predefinita": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListStatus": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListStatus": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Status": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "StatusIT": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "StatusEN": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "tblTodoList": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblTodoList",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblTodoList",
+        "Status"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDTodoListStatus"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.vwAttivitaCommesse": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDAttivita": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Posizione": {
+     "type": "cds.Integer"
+    },
+    "Attivita": {
+     "type": "cds.String",
+     "length": 150
+    }
+   }
+  },
+  "API_TICKETS.vwClienti": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCliente": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Password": {
+     "type": "cds.LargeString"
+    },
+    "GiorniProgettoAnno": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniFunzionaleAnno": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniSviluppoAnno": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniProgettoMese": {
+     "type": "cds.Decimal",
+     "precision": 23,
+     "scale": 6
+    },
+    "GiorniFunzionaleMese": {
+     "type": "cds.Decimal",
+     "precision": 23,
+     "scale": 6
+    },
+    "GiorniSviluppoMese": {
+     "type": "cds.Decimal",
+     "precision": 23,
+     "scale": 6
+    }
+   }
+  },
+  "API_TICKETS.vwCommesseAperte": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Stato": {
+     "type": "cds.Integer"
+    },
+    "VisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "Descrizione2": {
+     "type": "cds.String",
+     "length": 271
+    }
+   }
+  },
+  "API_TICKETS.vwCommesseDate": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessaData": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "DataDa": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataA": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Tipologia": {
+     "type": "cds.String",
+     "length": 150
+    }
+   }
+  },
+  "API_TICKETS.vwCommesseOrePerDev": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GG": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 6
+    }
+   }
+  },
+  "API_TICKETS.vwCommesseOreTotali": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Stato": {
+     "type": "cds.Integer"
+    },
+    "DataInizio": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataFine": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataGolive": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "RifCliente": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifProgetto": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifFunzionale": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifTecnico": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniProgetto": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniFunzionale": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniSviluppo": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Anno": {
+     "type": "cds.Integer"
+    },
+    "Mese": {
+     "type": "cds.Integer"
+    },
+    "OreRapportini": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 1
+    },
+    "GiorniRapportini": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 6
+    }
+   }
+  },
+  "API_TICKETS.vwCommesseOreTotaliDev": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Stato": {
+     "type": "cds.Integer"
+    },
+    "DataInizio": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataFine": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataGolive": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "RifCliente": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifProgetto": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifFunzionale": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "RifTecnico": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniProgetto": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniFunzionale": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "GiorniSviluppo": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Anno": {
+     "type": "cds.Integer"
+    },
+    "Mese": {
+     "type": "cds.Integer"
+    },
+    "OreRapportiniDev": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 1
+    },
+    "GiorniRapportiniDev": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 6
+    }
+   }
+  },
+  "API_TICKETS.vwCommesseOreTotaliPiuDev": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Anno": {
+     "type": "cds.Integer"
+    },
+    "Mese": {
+     "type": "cds.Integer"
+    },
+    "OreRapportini": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 1
+    },
+    "GiorniRapportini": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 6
+    },
+    "OreRapportiniDev": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 1
+    },
+    "GiorniRapportiniDev": {
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 6
+    }
+   }
+  },
+  "API_TICKETS.vwKpiBase": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    }
+   }
+  },
+  "API_TICKETS.vwKpiBase2": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "GiorniRitardo": {
+     "type": "cds.Integer"
+    },
+    "GiorniDevMancanti": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "GiorniDeltaConsPrev": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    }
+   }
+  },
+  "API_TICKETS.vwKpiBudget": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataInizioLavori": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "GiorniDelta": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "GiorniDeltaPercento": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.vwKpiTime": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataInizioLavori": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "GiorniDelta": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "GiorniDeltaPercento": {
+     "type": "cds.Integer"
+    },
+    "GiorniMancanti": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    }
+   }
+  },
+  "API_TICKETS.vwKpiTime2": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataInizioLavori": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "GiorniDelta": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "GiorniDeltaPercento": {
+     "type": "cds.Integer"
+    },
+    "GiorniMancanti": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "GiorniRitardo": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.vwKpiTime3": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Line": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "Val1": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "Val2": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDTodoListTipologia": {
+     "type": "cds.Integer"
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "IDProgetto": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "Priorita": {
+     "type": "cds.Integer"
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Avanzamento": {
+     "type": "cds.Integer"
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataInizioLavori": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "Allegato1": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Allegato2": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "VisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "StimaRichiesta": {
+     "type": "cds.Boolean"
+    },
+    "DataProduzione": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataProduzioneSched": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Fatturato": {
+     "type": "cds.Boolean"
+    },
+    "BugFix": {
+     "type": "cds.Boolean"
+    },
+    "GiorniConsCliente": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "Comunicazioni": {
+     "type": "cds.LargeString"
+    },
+    "AssegnatoAPrev": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "CR": {
+     "type": "cds.Boolean"
+    },
+    "AllegatiInArxivar": {
+     "type": "cds.Boolean"
+    },
+    "CodiceICMS": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "GiorniRitardo": {
+     "type": "cds.Integer"
+    },
+    "GiorniDevMancanti": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    },
+    "GiorniDeltaConsPrev": {
+     "type": "cds.Decimal",
+     "precision": 19,
+     "scale": 3
+    }
+   }
+  },
+  "API_TICKETS.vwKpiToCheck": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "GiorniDelta": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "GiorniDeltaPercento": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataInizioLavori": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.vwRapportiniDev": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRapportino": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDUtente": {
+     "type": "cds.Integer"
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "IDClienteSede": {
+     "type": "cds.Integer"
+    },
+    "IDProgetto": {
+     "type": "cds.Integer"
+    },
+    "IDProgettoAttivita": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Attivita": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Sede": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Destinazione": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Giorno": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Ore": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "OreLavorate": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Km": {
+     "type": "cds.Integer"
+    },
+    "KmEuro": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Pedaggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Forfait": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Vitto": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Alloggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Noleggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Trasporti": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Varie": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Plus": {
+     "type": "cds.Boolean"
+    },
+    "Fatturabile": {
+     "type": "cds.Boolean"
+    },
+    "Bloccato": {
+     "type": "cds.Boolean"
+    },
+    "SpeseVarie": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Docente": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "IDCommessa2": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList2": {
+     "type": "cds.Integer"
+    },
+    "Ore2": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Descrizione2": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "BloccatoAdmin": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.vwRapportiniJoin": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRapportino": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "ElaborazionePaga": {
+     "key": true,
+     "type": "cds.Boolean",
+     "notNull": true
+    },
+    "IDUtente": {
+     "type": "cds.Integer"
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "IDClienteSede": {
+     "type": "cds.Integer"
+    },
+    "IDProgetto": {
+     "type": "cds.Integer"
+    },
+    "IDProgettoAttivita": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Attivita": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Sede": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Destinazione": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Giorno": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Ore": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "OreLavorate": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Km": {
+     "type": "cds.Integer"
+    },
+    "KmEuro": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Pedaggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Forfait": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Vitto": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Alloggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Noleggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Trasporti": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Varie": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Plus": {
+     "type": "cds.Boolean"
+    },
+    "Fatturabile": {
+     "type": "cds.Boolean"
+    },
+    "Bloccato": {
+     "type": "cds.Boolean"
+    },
+    "SpeseVarie": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Cliente": {
+     "type": "cds.String",
+     "length": 303
+    },
+    "Commessa": {
+     "type": "cds.String",
+     "length": 301
+    },
+    "Ticket": {
+     "type": "cds.String",
+     "length": 301
+    },
+    "ClienteSede": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Docente": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "IDCommessa2": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList2": {
+     "type": "cds.Integer"
+    },
+    "Ore2": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Descrizione2": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "BloccatoAdmin": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.vwRapportiniNotaSpese": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "KmEuro": {
+     "key": true,
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 2,
+     "notNull": true
+    },
+    "Pedaggio": {
+     "key": true,
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 2,
+     "notNull": true
+    },
+    "Noleggio": {
+     "key": true,
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 2,
+     "notNull": true
+    },
+    "Trasporti": {
+     "key": true,
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 2,
+     "notNull": true
+    },
+    "Vitto": {
+     "key": true,
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 2,
+     "notNull": true
+    },
+    "Alloggio": {
+     "key": true,
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 2,
+     "notNull": true
+    },
+    "SpeseVarie": {
+     "key": true,
+     "type": "cds.Decimal",
+     "precision": 38,
+     "scale": 2,
+     "notNull": true
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Anno": {
+     "type": "cds.Integer"
+    },
+    "Mese": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.vwRisorseAttive": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRisorsa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Risorsa": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Login": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Email": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Efficienza": {
+     "type": "cds.Decimal",
+     "precision": 5,
+     "scale": 2
+    },
+    "Tempo": {
+     "type": "cds.Decimal",
+     "precision": 5,
+     "scale": 2
+    },
+    "GiorniForfait": {
+     "type": "cds.Integer"
+    },
+    "TipoAuto": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "LoginICMS": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "Supervisore": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Alert": {
+     "type": "cds.Boolean"
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    },
+    "NotaSpese": {
+     "type": "cds.Boolean"
+    },
+    "SapCodice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "SapCentroDiCosto": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "ElaborazionePaga": {
+     "type": "cds.Boolean"
+    },
+    "Foto": {
+     "type": "cds.String",
+     "length": 200
+    },
+    "Tel1": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "Tel2": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "Tel3": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "AreeFunzionali": {
+     "type": "cds.String",
+     "length": 200
+    },
+    "Attivo": {
+     "type": "cds.Boolean"
+    },
+    "PresenzeRapportini": {
+     "type": "cds.Boolean"
+    },
+    "RisorsaOrdinamento": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "MatricolaCedolino": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Permessi": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "NomePc": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Costo": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 0
+    },
+    "DataFineRapporto": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    }
+   }
+  },
+  "API_TICKETS.vwRisorseDev": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRisorsa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Login": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Email": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Efficienza": {
+     "type": "cds.Decimal",
+     "precision": 5,
+     "scale": 2
+    },
+    "Tempo": {
+     "type": "cds.Decimal",
+     "precision": 5,
+     "scale": 2
+    }
+   }
+  },
+  "API_TICKETS.vwTodoListAgenda": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "Criticita": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagVisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "Commessa": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniStimaDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "Expr1": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Cliente": {
+     "type": "cds.String",
+     "length": 50
+    }
+   }
+  },
+  "API_TICKETS.vwTodoListAssegnatoA": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListAssegnatoA": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "AssegnatoA": {
+     "key": true,
+     "type": "cds.String",
+     "length": 50,
+     "notNull": true
+    },
+    "Dev": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataInizio": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataFine": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Avanzamento": {
+     "type": "cds.Integer"
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Responsabile": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.vwTodoListCoordinatori": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Coordinatore": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Status": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.vwTodoListInLavorazione": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDTodoListParent": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Criticita": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "FlagBugFix": {
+     "type": "cds.Boolean"
+    },
+    "FlagCR": {
+     "type": "cds.Boolean"
+    },
+    "GiorniStimaDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "ChatPubblica": {
+     "type": "cds.LargeString"
+    },
+    "ChatPrivata": {
+     "type": "cds.LargeString"
+    },
+    "FlagFunz": {
+     "type": "cds.Boolean"
+    },
+    "FlagDev": {
+     "type": "cds.Boolean"
+    },
+    "DataSpecifiche": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataSviluppi": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GiorniConsCliente": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataProduzione": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagArxivar": {
+     "type": "cds.Boolean"
+    },
+    "GiorniConsDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniConsFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "FlagVisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "AssegnatoAPrev": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagPadre": {
+     "type": "cds.Boolean"
+    },
+    "FlagFiglio": {
+     "type": "cds.Boolean"
+    },
+    "NRilavorazioni": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.vwTodoListJoin": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagVisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "DataProduzione": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagBugFix": {
+     "type": "cds.Boolean"
+    },
+    "GiorniConsCliente": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "ChatPubblica": {
+     "type": "cds.LargeString"
+    },
+    "AssegnatoAPrev": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagCR": {
+     "type": "cds.Boolean"
+    },
+    "FlagArxivar": {
+     "type": "cds.Boolean"
+    },
+    "IDTodoListParent": {
+     "type": "cds.Integer"
+    },
+    "ChatPrivata": {
+     "type": "cds.LargeString"
+    },
+    "DataSpecifiche": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GiorniConsDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniConsFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataSviluppi": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagFunz": {
+     "type": "cds.Boolean"
+    },
+    "Criticita": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "FlagPadre": {
+     "type": "cds.Boolean"
+    },
+    "FlagFiglio": {
+     "type": "cds.Boolean"
+    },
+    "NRilavorazioni": {
+     "type": "cds.Integer"
+    },
+    "SupportoFunzionale": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagNeedDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagNeedFunz": {
+     "type": "cds.Boolean"
+    },
+    "Cliente": {
+     "type": "cds.String",
+     "length": 303
+    },
+    "Commessa": {
+     "type": "cds.String",
+     "length": 263
+    },
+    "StatusDesc": {
+     "type": "cds.String",
+     "length": 30
+    },
+    "FlagIngegnerizzabile": {
+     "type": "cds.Boolean"
+    },
+    "NAllegati": {
+     "type": "cds.Integer"
+    },
+    "OrdineSap": {
+     "type": "cds.String",
+     "length": 40
+    },
+    "UltimaModifica": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "UltimaModificaUtente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "UltimaModificaCliente": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "UltimaModificaUtenteCliente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagAms": {
+     "type": "cds.Boolean"
+    },
+    "IDTodoListTipologia": {
+     "type": "cds.Integer"
+    },
+    "InoltraA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "MessageID": {
+     "type": "cds.String",
+     "length": 255
+    }
+   }
+  },
+  "API_TICKETS.vwTodoListPerDev": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Login": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagVisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "DataProduzione": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagBugFix": {
+     "type": "cds.Boolean"
+    },
+    "GiorniConsCliente": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "ChatPubblica": {
+     "type": "cds.LargeString"
+    },
+    "AssegnatoAPrev": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagCR": {
+     "type": "cds.Boolean"
+    },
+    "FlagArxivar": {
+     "type": "cds.Boolean"
+    },
+    "IDTodoListParent": {
+     "type": "cds.Integer"
+    },
+    "ChatPrivata": {
+     "type": "cds.LargeString"
+    },
+    "DataSpecifiche": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GiorniConsDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaDev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniStimaFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniConsFunz": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataSviluppi": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "FlagDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagFunz": {
+     "type": "cds.Boolean"
+    },
+    "Criticita": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "FlagPadre": {
+     "type": "cds.Boolean"
+    },
+    "FlagFiglio": {
+     "type": "cds.Boolean"
+    },
+    "NRilavorazioni": {
+     "type": "cds.Integer"
+    },
+    "SupportoFunzionale": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "FlagNeedDev": {
+     "type": "cds.Boolean"
+    },
+    "FlagNeedFunz": {
+     "type": "cds.Boolean"
+    },
+    "FlagIngegnerizzabile": {
+     "type": "cds.Boolean"
+    },
+    "NAllegati": {
+     "type": "cds.Integer"
+    },
+    "OrdineSap": {
+     "type": "cds.String",
+     "length": 40
+    },
+    "UltimaModifica": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "UltimaModificaUtente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "UltimaModificaCliente": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "UltimaModificaUtenteCliente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "FlagAms": {
+     "type": "cds.Boolean"
+    },
+    "IDTodoListTipologia": {
+     "type": "cds.Integer"
+    },
+    "InoltraA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "MessageID": {
+     "type": "cds.String",
+     "length": 255
+    }
+   }
+  },
+  "API_TICKETS.vwTodoListWithChangeLog": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListChangeLog": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    }
+   }
+  },
+  "API_TICKETS.tblPM": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDPM": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "Risorse": {
+     "type": "cds.String",
+     "length": 4000
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 10
+    }
+   }
+  },
+  "API_TICKETS.tblRisorseEsterne": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRisorsaEsterna": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "RisorsaEsterna": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Email": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Pwd": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "IDClienti": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "IDCommesse": {
+     "type": "cds.LargeString"
+    },
+    "ClienteLabel": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "AreeFunzionali": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Rapportini": {
+     "type": "cds.Boolean"
+    },
+    "Ticket": {
+     "type": "cds.Boolean"
+    },
+    "Dev": {
+     "type": "cds.Boolean"
+    },
+    "AssegnatoA": {
+     "type": "cds.Boolean"
+    },
+    "SupportoFunzionale": {
+     "type": "cds.Boolean"
+    },
+    "Attivo": {
+     "type": "cds.Boolean"
+    },
+    "CreaTicket": {
+     "type": "cds.Boolean"
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Costo": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 0
+    },
+    "Societa": {
+     "type": "cds.String",
+     "length": 100
+    }
+   }
+  },
+  "API_TICKETS.vwRisorseEsterneDev": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRisorsaEsterna": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "RisorsaEsterna": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Email": {
+     "type": "cds.String",
+     "length": 250
+    }
+   }
+  },
+  "API_TICKETS.vwThemisRapportini": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRapportino": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "ElaborazionePaga": {
+     "key": true,
+     "type": "cds.Boolean",
+     "notNull": true
+    },
+    "IDUtente": {
+     "type": "cds.Integer"
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "IDClienteSede": {
+     "type": "cds.Integer"
+    },
+    "IDProgetto": {
+     "type": "cds.Integer"
+    },
+    "IDProgettoAttivita": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Attivita": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Sede": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Destinazione": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Giorno": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Ore": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "OreLavorate": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Km": {
+     "type": "cds.Integer"
+    },
+    "KmEuro": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Pedaggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Forfait": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Vitto": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Alloggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Noleggio": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Trasporti": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Varie": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Plus": {
+     "type": "cds.Boolean"
+    },
+    "Fatturabile": {
+     "type": "cds.Boolean"
+    },
+    "Bloccato": {
+     "type": "cds.Boolean"
+    },
+    "SpeseVarie": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 2
+    },
+    "Cliente": {
+     "type": "cds.String",
+     "length": 303
+    },
+    "Commessa": {
+     "type": "cds.String",
+     "length": 301
+    },
+    "Ticket": {
+     "type": "cds.String",
+     "length": 301
+    },
+    "ClienteSede": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Docente": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "IDCommessa2": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList2": {
+     "type": "cds.Integer"
+    },
+    "Ore2": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Descrizione2": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Ruolo": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "BloccatoAdmin": {
+     "type": "cds.Boolean"
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.tblPianificazione": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDPianificazione": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Cliente": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Commessa": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Progetto": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "PM": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GGFunzionale": {
+     "type": "cds.Integer"
+    },
+    "GGAbap": {
+     "type": "cds.Integer"
+    },
+    "GGReport": {
+     "type": "cds.Integer"
+    },
+    "GGTerminalini": {
+     "type": "cds.Integer"
+    },
+    "GGMes": {
+     "type": "cds.Integer"
+    },
+    "GGAltro": {
+     "type": "cds.Integer"
+    },
+    "Note": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "DataInizioAnalisi": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataFineAnalisi": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataInizioSviluppi": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataFineSviluppi": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataInizioFunzionale": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataFineFunzionale": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataGolive": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Approvato": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.sysdiagrams": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "diagram_id": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "name": {
+     "type": "cds.String",
+     "length": 128,
+     "notNull": true
+    },
+    "principal_id": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "version": {
+     "type": "cds.Integer"
+    },
+    "definition": {
+     "type": "cds.LargeBinary"
+    }
+   }
+  },
+  "API_TICKETS.View_1": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoList": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDTodoListTipologia": {
+     "type": "cds.Integer"
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "IDProgetto": {
+     "type": "cds.Integer"
+    },
+    "AreaFunzionale": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "Titolo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Testo": {
+     "type": "cds.LargeString"
+    },
+    "Priorita": {
+     "type": "cds.Integer"
+    },
+    "PropostoA": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataConsegnaRichiesta": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Avanzamento": {
+     "type": "cds.Integer"
+    },
+    "AssegnatoA": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "GiorniPrev": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "GiorniCons": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "DataInizioLavori": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataConsegnaSchedulata": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Status": {
+     "type": "cds.Integer"
+    },
+    "DataChiusura": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Ordinamento": {
+     "type": "cds.Integer"
+    },
+    "Allegato1": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Allegato2": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "StatusPrev": {
+     "type": "cds.Integer"
+    },
+    "ExternalID": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "VisibileCliente": {
+     "type": "cds.Boolean"
+    },
+    "StimaRichiesta": {
+     "type": "cds.Boolean"
+    },
+    "DataProduzione": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataProduzioneSched": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Fatturato": {
+     "type": "cds.Boolean"
+    },
+    "BugFix": {
+     "type": "cds.Boolean"
+    },
+    "GiorniConsCliente": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 3
+    },
+    "Comunicazioni": {
+     "type": "cds.LargeString"
+    },
+    "AssegnatoAPrev": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "CR": {
+     "type": "cds.Boolean"
+    },
+    "AllegatiInArxivar": {
+     "type": "cds.Boolean"
+    },
+    "CodiceICMS": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "IDTodoListParent": {
+     "type": "cds.Integer"
+    },
+    "GiorniRitardo": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.tblMacroCommesseDate": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDMacroCommessaData": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDMacroCommessa": {
+     "type": "cds.Integer"
+    },
+    "DataDa": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataA": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Tipologia": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Visibile": {
+     "type": "cds.Boolean"
+    },
+    "tblMacroCommesse": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblMacroCommesse",
+     "on": [
+      {
+       "ref": [
+        "tblMacroCommesse",
+        "IDMacroCommessa"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDMacroCommessa"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblMacroCommesseDateTipologia": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDMacroCommessaDataTipologia": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Tipologia": {
+     "type": "cds.String",
+     "length": 150
+    }
+   }
+  },
+  "API_TICKETS.vwMacroCommesseConDate": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDMacroCommessa": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "MacroCommessa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "Attivita": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "DataInizio": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataFine": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "GGTot": {
+     "type": "cds.Integer"
+    },
+    "Responsabile": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Stato": {
+     "type": "cds.Integer"
+    },
+    "Logo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Bloccato": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.vwMacroCommesseDate": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDMacroCommessaData": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDMacroCommessa": {
+     "type": "cds.Integer"
+    },
+    "DataDa": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "DataA": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "Tipologia": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Visibile": {
+     "type": "cds.Boolean"
+    },
+    "Codice": {
+     "type": "cds.String",
+     "length": 20
+    },
+    "DescrizioneMacroCommessa": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Logo": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Responsabile": {
+     "type": "cds.String",
+     "length": 50
+    }
+   }
+  },
+  "API_TICKETS.tblBadge": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDBadge": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Code": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Stato": {
+     "type": "cds.Boolean",
+     "notNull": true
+    },
+    "UltimaModifica": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "tblVisite": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblVisite",
+     "cardinality": {
+      "max": "*"
+     },
+     "on": [
+      {
+       "ref": [
+        "tblVisite",
+        "IDBadge"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDBadge"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblVisite": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDVisita": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Insertdate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "IDCliente": {
+     "type": "cds.Integer"
+    },
+    "Cliente": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "Visitatore": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "DataIngresso": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "DataUscita": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Referente": {
+     "type": "cds.String",
+     "length": 100
+    },
+    "Firma": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Guid": {
+     "type": "cds.UUID"
+    },
+    "IDBadge": {
+     "type": "cds.Integer"
+    },
+    "Email": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "tblBadge": {
+     "@cds.ambiguous": "missing on condition?",
+     "type": "cds.Association",
+     "target": "API_TICKETS.tblBadge",
+     "on": [
+      {
+       "ref": [
+        "tblBadge",
+        "IDBadge"
+       ]
+      },
+      "=",
+      {
+       "ref": [
+        "IDBadge"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "API_TICKETS.tblAllocazione": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDAllocazione": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "MacroCommessa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Data1": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Giorni1": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni2": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni3": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni4": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni5": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni6": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni7": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni8": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni9": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni10": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni11": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni12": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni13": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Totale": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Commento": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Bloccato": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblAllocazioneStorico": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDAllocazioneStorico": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "MacroCommessa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Data": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Giorni": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    }
+   }
+  },
+  "API_TICKETS.tblAllocazioneThemis": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDAllocazione": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCliente": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Data1": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Giorni1": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni2": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni3": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni4": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni5": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni6": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni7": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni8": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni9": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni10": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni11": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni12": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Giorni13": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Totale": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Commento": {
+     "type": "cds.String",
+     "length": 250
+    }
+   }
+  },
+  "API_TICKETS.tblAllocazioneThemisStorico": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDAllocazioneStorico": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCliente": {
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Team": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Data": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Giorni": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    }
+   }
+  },
+  "API_TICKETS.tblAutorizzazioni": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDAutorizzazione": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Chiave": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "TableName": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "TableKey": {
+     "type": "cds.Integer"
+    },
+    "NeedAdmin": {
+     "type": "cds.Boolean"
+    },
+    "NeedPM": {
+     "type": "cds.Boolean"
+    },
+    "NeedCEO": {
+     "type": "cds.Boolean"
+    },
+    "NeedManager": {
+     "type": "cds.Boolean"
+    }
+   }
+  },
+  "API_TICKETS.tblNonConformita": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDNonConformita": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Numero": {
+     "type": "cds.Integer"
+    },
+    "Data": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Cliente": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "Progetto": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "SegnalazioneDi": {
+     "type": "cds.String",
+     "length": 150
+    },
+    "AreaRilevamento": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Oggetto": {
+     "type": "cds.LargeString"
+    },
+    "Difetto": {
+     "type": "cds.LargeString"
+    },
+    "CompilatoDa": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "CompilatoIl": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Firma": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Risoluzione": {
+     "type": "cds.LargeString"
+    },
+    "CompilatoDa2": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "CompilatoIl2": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Firma2": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "VerificaOk": {
+     "type": "cds.Boolean"
+    },
+    "Note": {
+     "type": "cds.LargeString"
+    },
+    "CompilatoDa3": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "CompilatoIl3": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Firma3": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "AnalisiCause": {
+     "type": "cds.LargeString"
+    },
+    "AzioniCorrettive": {
+     "type": "cds.Boolean"
+    },
+    "CompilatoDa4": {
+     "type": "cds.String",
+     "length": 10
+    },
+    "CompilatoIl4": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Firma4": {
+     "type": "cds.String",
+     "length": 250
+    }
+   }
+  },
+  "API_TICKETS.tblRapportiniAllegati": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRapportinoAllegato": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDRapportino": {
+     "type": "cds.Integer"
+    },
+    "Allegato": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    }
+   }
+  },
+  "API_TICKETS.tblRapportiniRecording": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDRapportinoRecording": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    },
+    "StartDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "EndDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    }
+   }
+  },
+  "API_TICKETS.tblRapportiniSblocchi": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDSblocco": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "InsertDate": {
+     "type": "cds.Timestamp",
+     "@odata.Type": "Edm.DateTime",
+     "@odata.Precision": 3
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Anno": {
+     "type": "cds.Integer"
+    },
+    "Mese": {
+     "type": "cds.Integer"
+    },
+    "Causa": {
+     "type": "cds.String",
+     "length": 50
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    },
+    "Approvato": {
+     "type": "cds.Boolean"
+    },
+    "DataApprovazione": {
+     "type": "cds.DateTime",
+     "@odata.Type": "Edm.DateTime"
+    },
+    "ApprovatoDa": {
+     "type": "cds.String",
+     "length": 50
+    }
+   }
+  },
+  "API_TICKETS.tblTeam": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTeam": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Descrizione": {
+     "type": "cds.String",
+     "length": 250
+    }
+   }
+  },
+  "API_TICKETS.tblCommesseOrdini": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDCommessaOrdine": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "IDCommessa": {
+     "type": "cds.Integer"
+    },
+    "NumeroOrdine": {
+     "type": "cds.String",
+     "length": 40
+    },
+    "RigaOrdine": {
+     "type": "cds.Integer"
+    },
+    "FixOrTimeMaterial": {
+     "type": "cds.String",
+     "length": 2
+    },
+    "GiorniStima": {
+     "type": "cds.Decimal",
+     "precision": 18,
+     "scale": 1
+    },
+    "Risorse": {
+     "type": "cds.LargeString"
+    },
+    "FlagDefault": {
+     "type": "cds.Boolean"
+    },
+    "IDSocieta": {
+     "type": "cds.Integer"
+    },
+    "Stato": {
+     "type": "cds.Integer"
+    }
+   }
+  },
+  "API_TICKETS.tblTodoListFavourites": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "elements": {
+    "IDTodoListFavourite": {
+     "key": true,
+     "type": "cds.Integer",
+     "notNull": true
+    },
+    "Utente": {
+     "type": "cds.String",
+     "length": 200
+    },
+    "IDTodoList": {
+     "type": "cds.Integer"
+    }
+   }
+  }
+ }
+}

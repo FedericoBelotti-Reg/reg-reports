@@ -1,0 +1,2268 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0" m:MaxDataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="DB">
+<EntityType Name="tblCommesseDate">
+<Key>
+<PropertyRef Name="IDCommessaData"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDCommessaData" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="DataDa" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataA" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Tipologia" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Visibile" Type="Edm.Boolean"/>
+<NavigationProperty Name="tblCommesse" Relationship="DB.FK_tblCommesseDate_tblCommesse" ToRole="tblCommesse" FromRole="tblCommesseDate"/>
+</EntityType>
+<EntityType Name="tblCommesseDateTipologia">
+<Key>
+<PropertyRef Name="IDCommessaDataTipologia"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDCommessaDataTipologia" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Tipologia" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblFestivi">
+<Key>
+<PropertyRef Name="IDFestivo"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDFestivo" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Giorno" Type="Edm.DateTime" Precision="0"/>
+</EntityType>
+<EntityType Name="tblAbbonamenti">
+<Key>
+<PropertyRef Name="IDAbbonamento"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDAbbonamento" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Fornitore" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="DataScadenza" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Prezzo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Attivo" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblAreeFunzionali">
+<Key>
+<PropertyRef Name="IDAreaFunzionale"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDAreaFunzionale" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblAttivita">
+<Key>
+<PropertyRef Name="IDAttivita"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDAttivita" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Codice" Type="Edm.Int32"/>
+<Property Name="Attivita" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Posizione" Type="Edm.Int32"/>
+<Property Name="CodiceICMS" Type="Edm.Int32"/>
+<Property Name="DaCopiare" Type="Edm.Boolean"/>
+<NavigationProperty Name="tblAttivitaCommesse" Relationship="DB.tblAttivitatblAttivitaCommesse" ToRole="tblAttivitaCommesse" FromRole="tblAttivita"/>
+</EntityType>
+<EntityType Name="tblAttivitaCommesse">
+<Key>
+<PropertyRef Name="IDCommessa"/>
+<PropertyRef Name="IDAttivita"/>
+</Key>
+<Property Name="IDCommessa" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDAttivita" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Posizione" Type="Edm.Int32"/>
+<NavigationProperty Name="tblAttivita" Relationship="DB.tblAttivitatblAttivitaCommesse" ToRole="tblAttivita" FromRole="tblAttivitaCommesse"/>
+<NavigationProperty Name="tblCommesse" Relationship="DB.tblCommessetblAttivitaCommesse" ToRole="tblCommesse" FromRole="tblAttivitaCommesse"/>
+</EntityType>
+<EntityType Name="tblBugs">
+<Key>
+<PropertyRef Name="IDBug"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDBug" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Status" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="tblClienti">
+<Key>
+<PropertyRef Name="IDCliente"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDCliente" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Password" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniProgettoAnno" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniFunzionaleAnno" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniSviluppoAnno" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Revisione" Type="Edm.Boolean"/>
+<Property Name="SapCodice" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Logo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Scheda" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Account" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<NavigationProperty Name="tblCommesse" Relationship="DB.FK_tblCommesse_tblClienti" ToRole="tblCommesse" FromRole="tblClienti"/>
+<NavigationProperty Name="tblRapportini" Relationship="DB.FK_tblRapportini_tblClienti" ToRole="tblRapportini" FromRole="tblClienti"/>
+<NavigationProperty Name="tblTodoList" Relationship="DB.tblClientitblTodoList" ToRole="tblTodoList" FromRole="tblClienti"/>
+<NavigationProperty Name="tblMacroCommesse" Relationship="DB.tblClientitblMacroCommesse" ToRole="tblMacroCommesse" FromRole="tblClienti"/>
+</EntityType>
+<EntityType Name="tblClientiAreeFunzionali">
+<Key>
+<PropertyRef Name="IDClienteAreaFunzionale"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDClienteAreaFunzionale" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="EmailList" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true"/>
+<Property Name="FlagAms" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblClientiLogin">
+<Key>
+<PropertyRef Name="IDClienteLogin"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDClienteLogin" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDCliente" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="Nominativo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Email" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Pwd" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Gruppo" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Livello" Type="Edm.String" MaxLength="10" FixedLength="true" Unicode="true"/>
+<Property Name="Autorizzazioni" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Attivo" Type="Edm.Boolean"/>
+<Property Name="EmailList" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblClientiSedi">
+<Key>
+<PropertyRef Name="IDClienteSede"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDClienteSede" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="CodiceSede" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Sede" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Km" Type="Edm.Int32"/>
+<Property Name="Pedaggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+</EntityType>
+<EntityType Name="tblCommesse">
+<Key>
+<PropertyRef Name="IDCommessa"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDCommessa" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="MacroCommessa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Stato" Type="Edm.Int32"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataGolive" Type="Edm.DateTime" Precision="0"/>
+<Property Name="RifCliente" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifProgetto" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifFunzionale" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifTecnico" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniProgetto" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniFunzionale" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniSviluppo" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Pianificabile" Type="Edm.Boolean"/>
+<Property Name="VisibileCliente" Type="Edm.Boolean"/>
+<Property Name="CodiceICMS" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="SapOdv" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Tipologia" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Categoria" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FixOrTimeMaterial" Type="Edm.String" MaxLength="2" FixedLength="false" Unicode="true"/>
+<NavigationProperty Name="tblClienti" Relationship="DB.FK_tblCommesse_tblClienti" ToRole="tblClienti" FromRole="tblCommesse"/>
+<NavigationProperty Name="tblCommesseDate" Relationship="DB.FK_tblCommesseDate_tblCommesse" ToRole="tblCommesseDate" FromRole="tblCommesse"/>
+<NavigationProperty Name="tblRapportini" Relationship="DB.FK_tblRapportini_tblCommesse" ToRole="tblRapportini" FromRole="tblCommesse"/>
+<NavigationProperty Name="tblTodoList" Relationship="DB.tblCommessetblTodoList" ToRole="tblTodoList" FromRole="tblCommesse"/>
+<NavigationProperty Name="tblRisorseAllocazione" Relationship="DB.tblRisorseAllocazionetblCommesse" ToRole="tblRisorseAllocazione" FromRole="tblCommesse"/>
+<NavigationProperty Name="tblAttivitaCommesse" Relationship="DB.tblCommessetblAttivitaCommesse" ToRole="tblAttivitaCommesse" FromRole="tblCommesse"/>
+</EntityType>
+<EntityType Name="tblComunicazioni">
+<Key>
+<PropertyRef Name="IDComunicazione"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDComunicazione" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true"/>
+<Property Name="DataScadenza" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Attivo" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblConfig">
+<Key>
+<PropertyRef Name="IDConfig"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDConfig" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Chiave" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Valore" Type="Edm.String" MaxLength="500" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblCoordinatori">
+<Key>
+<PropertyRef Name="IDCoordinatore"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDCoordinatore" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Coordinatore" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Risorsa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblDocumenti">
+<Key>
+<PropertyRef Name="IDDocumento"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDDocumento" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Tipologia" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblFerie">
+<Key>
+<PropertyRef Name="IDFerie"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDFerie" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="DataDal" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataAl" Type="Edm.DateTime" Precision="0"/>
+<Property Name="GiorniLavorativi" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="UtenteAdmin" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Approvato" Type="Edm.Boolean"/>
+<Property Name="DataApprovazione" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Causa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="ApprovatoDa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="DataLetturaApprovazione" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Firma" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblIdeas">
+<Key>
+<PropertyRef Name="IDIdea"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDIdea" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Status" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="tblLog">
+<Key>
+<PropertyRef Name="IDLog"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDLog" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Message" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblLogEmail">
+<Key>
+<PropertyRef Name="IDLogEmail"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDLogEmail" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="MailFrom" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="MailTo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Subject" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Body" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblMacroCommesse">
+<Key>
+<PropertyRef Name="IDMacroCommessa"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDMacroCommessa" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="MacroCommessa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="Attivita" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GGTot" Type="Edm.Int32"/>
+<Property Name="Responsabile" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Stato" Type="Edm.Int32"/>
+<Property Name="Bloccato" Type="Edm.Boolean"/>
+<NavigationProperty Name="tblMacroCommesseDate" Relationship="DB.tblMacroCommessetblMacroCommesseDate" ToRole="tblMacroCommesseDate" FromRole="tblMacroCommesse"/>
+<NavigationProperty Name="tblClienti" Relationship="DB.tblClientitblMacroCommesse" ToRole="tblClienti" FromRole="tblMacroCommesse"/>
+</EntityType>
+<EntityType Name="tblPrenotazioneMateriale">
+<Key>
+<PropertyRef Name="IDPrenotazione"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDPrenotazione" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Materiale" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Dal" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Al" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Status" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="tblRapportini">
+<Key>
+<PropertyRef Name="IDRapportino"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRapportino" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDUtente" Type="Edm.Int32"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="IDClienteSede" Type="Edm.Int32"/>
+<Property Name="IDProgetto" Type="Edm.Int32"/>
+<Property Name="IDProgettoAttivita" Type="Edm.Int32"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Attivita" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Sede" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Destinazione" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Giorno" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Ore" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="OreLavorate" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Km" Type="Edm.Int32"/>
+<Property Name="KmEuro" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Pedaggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Forfait" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Vitto" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Alloggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Noleggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Trasporti" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Varie" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Plus" Type="Edm.Boolean"/>
+<Property Name="Fatturabile" Type="Edm.Boolean"/>
+<Property Name="Bloccato" Type="Edm.Boolean"/>
+<Property Name="SpeseVarie" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Docente" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="IDCommessa2" Type="Edm.Int32"/>
+<Property Name="IDTodoList2" Type="Edm.Int32"/>
+<Property Name="Ore2" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Descrizione2" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="BloccatoAdmin" Type="Edm.Boolean"/>
+<NavigationProperty Name="tblClienti" Relationship="DB.FK_tblRapportini_tblClienti" ToRole="tblClienti" FromRole="tblRapportini"/>
+<NavigationProperty Name="tblCommesse" Relationship="DB.FK_tblRapportini_tblCommesse" ToRole="tblCommesse" FromRole="tblRapportini"/>
+<NavigationProperty Name="tblClientiSedi" Relationship="DB.tblClientiSeditblRapportini" ToRole="tblClientiSedi" FromRole="tblRapportini"/>
+</EntityType>
+<EntityType Name="tblRisorse">
+<Key>
+<PropertyRef Name="IDRisorsa"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRisorsa" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Risorsa" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Login" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Email" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Efficienza" Type="Edm.Decimal" Precision="5" Scale="2"/>
+<Property Name="Tempo" Type="Edm.Decimal" Precision="5" Scale="2"/>
+<Property Name="GiorniForfait" Type="Edm.Int32"/>
+<Property Name="TipoAuto" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="LoginICMS" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="Supervisore" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Alert" Type="Edm.Boolean"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+<Property Name="NotaSpese" Type="Edm.Boolean"/>
+<Property Name="SapCodice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="SapCentroDiCosto" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="ElaborazionePaga" Type="Edm.Boolean"/>
+<Property Name="Foto" Type="Edm.String" MaxLength="200" FixedLength="false" Unicode="true"/>
+<Property Name="Tel1" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="Tel2" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="Tel3" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="AreeFunzionali" Type="Edm.String" MaxLength="200" FixedLength="false" Unicode="true"/>
+<Property Name="Attivo" Type="Edm.Boolean"/>
+<Property Name="PresenzeRapportini" Type="Edm.Boolean"/>
+<Property Name="RisorsaOrdinamento" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Permessi" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="MatricolaCedolino" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="NomePc" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Team" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Costo" Type="Edm.Decimal" Precision="18" Scale="0"/>
+<Property Name="DataFineRapporto" Type="Edm.DateTime" Precision="0"/>
+<NavigationProperty Name="tblSocieta" Relationship="DB.tblRisorsetblSocieta" ToRole="tblSocieta" FromRole="tblRisorse"/>
+</EntityType>
+<EntityType Name="tblRisorseAllocazione">
+<Key>
+<PropertyRef Name="IDRisorsaAllocazione"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRisorsaAllocazione" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="MacroCommessa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Giorni" Type="Edm.Int32"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Mese" Type="Edm.Int32"/>
+<Property Name="Anno" Type="Edm.Int32"/>
+<Property Name="Team" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<NavigationProperty Name="tblClienti" Relationship="DB.tblRisorseAllocazionetblClienti" ToRole="tblClienti" FromRole="tblRisorseAllocazione"/>
+<NavigationProperty Name="tblCommesse" Relationship="DB.tblRisorseAllocazionetblCommesse" ToRole="tblCommesse" FromRole="tblRisorseAllocazione"/>
+</EntityType>
+<EntityType Name="tblSkills">
+<Key>
+<PropertyRef Name="IDSkill"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDSkill" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Skill" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblSkillsRisorse">
+<Key>
+<PropertyRef Name="IDSkillRisorsa"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDSkillRisorsa" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDSkill" Type="Edm.Int32"/>
+<Property Name="IDRisorsa" Type="Edm.Int32"/>
+<Property Name="Efficienza" Type="Edm.Decimal" Precision="5" Scale="2"/>
+</EntityType>
+<EntityType Name="tblSocieta">
+<Key>
+<PropertyRef Name="IDSocieta"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDSocieta" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Societa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<NavigationProperty Name="tblRisorse" Relationship="DB.tblRisorsetblSocieta" ToRole="tblRisorse" FromRole="tblSocieta"/>
+</EntityType>
+<EntityType Name="tblTempTodoList">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoList" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagVisibileCliente" Type="Edm.Boolean"/>
+<Property Name="DataProduzione" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagBugFix" Type="Edm.Boolean"/>
+<Property Name="GiorniConsCliente" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="ChatPubblica" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoAPrev" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagCR" Type="Edm.Boolean"/>
+<Property Name="FlagArxivar" Type="Edm.Boolean"/>
+<Property Name="IDTodoListParent" Type="Edm.Int32"/>
+<Property Name="ChatPrivata" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="DataSpecifiche" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GiorniConsDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="Confermato" Type="Edm.Boolean"/>
+<Property Name="CodCliente" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true"/>
+<Property Name="CodCommessa" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStimaDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniConsFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataSviluppi" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagDev" Type="Edm.Boolean"/>
+<Property Name="FlagFunz" Type="Edm.Boolean"/>
+<Property Name="Criticita" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="FlagPadre" Type="Edm.Boolean"/>
+<Property Name="FlagFiglio" Type="Edm.Boolean"/>
+<Property Name="NRilavorazioni" Type="Edm.Int32"/>
+<Property Name="SupportoFunzionale" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagNeedDev" Type="Edm.Boolean"/>
+<Property Name="FlagNeedFunz" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblTodoList">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoList" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagVisibileCliente" Type="Edm.Boolean"/>
+<Property Name="DataProduzione" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagBugFix" Type="Edm.Boolean"/>
+<Property Name="GiorniConsCliente" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="ChatPubblica" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoAPrev" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagCR" Type="Edm.Boolean"/>
+<Property Name="FlagArxivar" Type="Edm.Boolean"/>
+<Property Name="IDTodoListParent" Type="Edm.Int32"/>
+<Property Name="ChatPrivata" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="DataSpecifiche" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GiorniConsDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniConsFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataSviluppi" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagDev" Type="Edm.Boolean"/>
+<Property Name="FlagFunz" Type="Edm.Boolean"/>
+<Property Name="Criticita" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="FlagPadre" Type="Edm.Boolean"/>
+<Property Name="FlagFiglio" Type="Edm.Boolean"/>
+<Property Name="NRilavorazioni" Type="Edm.Int32"/>
+<Property Name="SupportoFunzionale" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagNeedDev" Type="Edm.Boolean"/>
+<Property Name="FlagNeedFunz" Type="Edm.Boolean"/>
+<Property Name="FlagIngegnerizzabile" Type="Edm.Boolean"/>
+<Property Name="NAllegati" Type="Edm.Int32"/>
+<Property Name="OrdineSap" Type="Edm.String" MaxLength="40" FixedLength="false" Unicode="true"/>
+<Property Name="UltimaModifica" Type="Edm.DateTime" Precision="0"/>
+<Property Name="UltimaModificaUtente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="UltimaModificaCliente" Type="Edm.DateTime" Precision="0"/>
+<Property Name="UltimaModificaUtenteCliente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagAms" Type="Edm.Boolean"/>
+<Property Name="IDTodoListTipologia" Type="Edm.Int32"/>
+<Property Name="InoltraA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="MessageID" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true"/>
+<NavigationProperty Name="tblTodoListAllegati" Relationship="DB.tblTodoListtblTodoListAllegati" ToRole="tblTodoListAllegati" FromRole="tblTodoList"/>
+<NavigationProperty Name="tblTodoListAssegnatoA" Relationship="DB.tblTodoListtblTodoListAssegnatoA" ToRole="tblTodoListAssegnatoA" FromRole="tblTodoList"/>
+<NavigationProperty Name="tblCommesse" Relationship="DB.tblCommessetblTodoList" ToRole="tblCommesse" FromRole="tblTodoList"/>
+<NavigationProperty Name="tblClienti" Relationship="DB.tblClientitblTodoList" ToRole="tblClienti" FromRole="tblTodoList"/>
+<NavigationProperty Name="tblTodoListStatus" Relationship="DB.tblTodoListtblTodoListStatus" ToRole="tblTodoListStatus" FromRole="tblTodoList"/>
+</EntityType>
+<EntityType Name="tblTodoListAllegati">
+<Key>
+<PropertyRef Name="IDTodoListAllegato"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListAllegato" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="VisibileCliente" Type="Edm.Boolean"/>
+<Property Name="FileName" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="MimeType" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Docnumberarx5" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Docnumberarxnext" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<NavigationProperty Name="tblTodoList" Relationship="DB.tblTodoListtblTodoListAllegati" ToRole="tblTodoList" FromRole="tblTodoListAllegati"/>
+</EntityType>
+<EntityType Name="tblTodoListAssegnatoA">
+<Key>
+<PropertyRef Name="IDTodoListAssegnatoA"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListAssegnatoA" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AssegnatoA" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Avanzamento" Type="Edm.Int32"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Responsabile" Type="Edm.Boolean"/>
+<Property Name="Completato" Type="Edm.Boolean"/>
+<Property Name="Standby" Type="Edm.Boolean"/>
+<NavigationProperty Name="tblTodoList" Relationship="DB.tblTodoListtblTodoListAssegnatoA" ToRole="tblTodoList" FromRole="tblTodoListAssegnatoA"/>
+</EntityType>
+<EntityType Name="tblTodoListAssegnatoAChangeLog">
+<Key>
+<PropertyRef Name="IDTodoListAssegnatoAChangeLog"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListAssegnatoAChangeLog" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDTodoListAssegnatoA" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AssegnatoA" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Avanzamento" Type="Edm.Int32"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Responsabile" Type="Edm.Boolean"/>
+<Property Name="UpdateDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="UpdateUtente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Completato" Type="Edm.Boolean"/>
+<Property Name="Standby" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblTodoListAssegnatoATmp">
+<Key>
+<PropertyRef Name="IDTodoListAssegnatoA"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListAssegnatoA" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AssegnatoA" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Avanzamento" Type="Edm.Int32"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Responsabile" Type="Edm.Boolean"/>
+<Property Name="Completato" Type="Edm.Boolean"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="RefCounter" Type="Edm.Int32"/>
+<Property Name="Standby" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblTodoListChangeLog">
+<Key>
+<PropertyRef Name="IDTodoListChangeLog"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListChangeLog" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagVisibileCliente" Type="Edm.Boolean"/>
+<Property Name="UpdateDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="UpdateUtente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="DataProduzione" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagBugFix" Type="Edm.Boolean"/>
+<Property Name="GiorniConsCliente" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="ChatPubblica" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoAPrev" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagCR" Type="Edm.Boolean"/>
+<Property Name="ChatPrivata" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="DataSpecifiche" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GiorniConsDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniConsFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataSviluppi" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagDev" Type="Edm.Boolean"/>
+<Property Name="FlagFunz" Type="Edm.Boolean"/>
+<Property Name="Criticita" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="FlagPadre" Type="Edm.Boolean"/>
+<Property Name="FlagFiglio" Type="Edm.Boolean"/>
+<Property Name="NRilavorazioni" Type="Edm.Int32"/>
+<Property Name="SupportoFunzionale" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagNeedDev" Type="Edm.Boolean"/>
+<Property Name="FlagNeedFunz" Type="Edm.Boolean"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoListParent" Type="Edm.Int32"/>
+<Property Name="FlagArxivar" Type="Edm.Boolean"/>
+<Property Name="FlagIngegnerizzabile" Type="Edm.Boolean"/>
+<Property Name="NAllegati" Type="Edm.Int32"/>
+<Property Name="SentTo" Type="Edm.String" MaxLength="2000" FixedLength="false" Unicode="true"/>
+<Property Name="OrdineSap" Type="Edm.String" MaxLength="40" FixedLength="false" Unicode="true"/>
+<Property Name="FlagAms" Type="Edm.Boolean"/>
+<Property Name="IDTodoListTipologia" Type="Edm.Int32"/>
+<Property Name="InoltraA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblTodoListQualita">
+<Key>
+<PropertyRef Name="IDTodoListQualita"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListQualita" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="UpdateDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Giudizio" Type="Edm.Int32"/>
+<Property Name="Tipologia" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="tblTodoListRuoli">
+<Key>
+<PropertyRef Name="IDTodoListRuolo"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListRuolo" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Occupazione" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="tblTodoListWorkflow">
+<Key>
+<PropertyRef Name="IDTodoListWorkflow"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListWorkflow" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Regola" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FromStatus" Type="Edm.Int32"/>
+<Property Name="ToStatus" Type="Edm.Int32"/>
+<Property Name="EmailUtente" Type="Edm.Boolean"/>
+<Property Name="EmailAssegnatoA" Type="Edm.Boolean"/>
+<Property Name="EmailDevAdmin" Type="Edm.Boolean"/>
+<Property Name="EmailPM" Type="Edm.Boolean"/>
+<Property Name="EmailCliente" Type="Edm.Boolean"/>
+<Property Name="EmailClienteAdminPlant" Type="Edm.Boolean"/>
+<Property Name="EmailClienteAdminArea" Type="Edm.Boolean"/>
+<Property Name="Template" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="TemplateCliente" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="EmailClientePlant" Type="Edm.Boolean"/>
+<Property Name="CampiOsservati" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="ApertoCliente" Type="Edm.Boolean"/>
+<Property Name="ApertoInterno" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblVarianti">
+<Key>
+<PropertyRef Name="IDVariante"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDVariante" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Variante" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Tabella" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Data" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Predefinita" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblTodoListStatus">
+<Key>
+<PropertyRef Name="IDTodoListStatus"/>
+</Key>
+<Property Name="IDTodoListStatus" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Status" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="StatusIT" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="StatusEN" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<NavigationProperty Name="tblTodoList" Relationship="DB.tblTodoListtblTodoListStatus" ToRole="tblTodoList" FromRole="tblTodoListStatus"/>
+</EntityType>
+<EntityType Name="vwAttivitaCommesse">
+<Key>
+<PropertyRef Name="IDCommessa"/>
+<PropertyRef Name="IDAttivita"/>
+</Key>
+<Property Name="IDCommessa" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDAttivita" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Posizione" Type="Edm.Int32"/>
+<Property Name="Attivita" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwClienti">
+<Key>
+<PropertyRef Name="IDCliente"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDCliente" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Password" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniProgettoAnno" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniFunzionaleAnno" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniSviluppoAnno" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniProgettoMese" Type="Edm.Decimal" Precision="23" Scale="6"/>
+<Property Name="GiorniFunzionaleMese" Type="Edm.Decimal" Precision="23" Scale="6"/>
+<Property Name="GiorniSviluppoMese" Type="Edm.Decimal" Precision="23" Scale="6"/>
+</EntityType>
+<EntityType Name="vwCommesseAperte">
+<Key>
+<PropertyRef Name="IDCommessa"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDCommessa" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Stato" Type="Edm.Int32"/>
+<Property Name="VisibileCliente" Type="Edm.Boolean"/>
+<Property Name="Descrizione2" Type="Edm.String" MaxLength="271" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwCommesseDate">
+<Key>
+<PropertyRef Name="IDCommessaData"/>
+<PropertyRef Name="IDCommessa"/>
+</Key>
+<Property Name="IDCommessaData" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDCommessa" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="DataDa" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataA" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Tipologia" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwCommesseOrePerDev">
+<Key>
+<PropertyRef Name="IDCommessa"/>
+</Key>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GG" Type="Edm.Decimal" Precision="38" Scale="6"/>
+</EntityType>
+<EntityType Name="vwCommesseOreTotali">
+<Key>
+<PropertyRef Name="IDCommessa"/>
+</Key>
+<Property Name="IDCommessa" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Stato" Type="Edm.Int32"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataGolive" Type="Edm.DateTime" Precision="0"/>
+<Property Name="RifCliente" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifProgetto" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifFunzionale" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifTecnico" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniProgetto" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniFunzionale" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniSviluppo" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Anno" Type="Edm.Int32"/>
+<Property Name="Mese" Type="Edm.Int32"/>
+<Property Name="OreRapportini" Type="Edm.Decimal" Precision="38" Scale="1"/>
+<Property Name="GiorniRapportini" Type="Edm.Decimal" Precision="38" Scale="6"/>
+</EntityType>
+<EntityType Name="vwCommesseOreTotaliDev">
+<Key>
+<PropertyRef Name="IDCommessa"/>
+</Key>
+<Property Name="IDCommessa" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Stato" Type="Edm.Int32"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataGolive" Type="Edm.DateTime" Precision="0"/>
+<Property Name="RifCliente" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifProgetto" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifFunzionale" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="RifTecnico" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniProgetto" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniFunzionale" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="GiorniSviluppo" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Anno" Type="Edm.Int32"/>
+<Property Name="Mese" Type="Edm.Int32"/>
+<Property Name="OreRapportiniDev" Type="Edm.Decimal" Precision="38" Scale="1"/>
+<Property Name="GiorniRapportiniDev" Type="Edm.Decimal" Precision="38" Scale="6"/>
+</EntityType>
+<EntityType Name="vwCommesseOreTotaliPiuDev">
+<Key>
+<PropertyRef Name="IDCommessa"/>
+</Key>
+<Property Name="IDCommessa" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Anno" Type="Edm.Int32"/>
+<Property Name="Mese" Type="Edm.Int32"/>
+<Property Name="OreRapportini" Type="Edm.Decimal" Precision="38" Scale="1"/>
+<Property Name="GiorniRapportini" Type="Edm.Decimal" Precision="38" Scale="6"/>
+<Property Name="OreRapportiniDev" Type="Edm.Decimal" Precision="38" Scale="1"/>
+<Property Name="GiorniRapportiniDev" Type="Edm.Decimal" Precision="38" Scale="6"/>
+</EntityType>
+<EntityType Name="vwKpiBase">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+</EntityType>
+<EntityType Name="vwKpiBase2">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="GiorniRitardo" Type="Edm.Int32"/>
+<Property Name="GiorniDevMancanti" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="GiorniDeltaConsPrev" Type="Edm.Decimal" Precision="19" Scale="3"/>
+</EntityType>
+<EntityType Name="vwKpiBudget">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataInizioLavori" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="GiorniDelta" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="GiorniDeltaPercento" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="vwKpiTime">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataInizioLavori" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="GiorniDelta" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="GiorniDeltaPercento" Type="Edm.Int32"/>
+<Property Name="GiorniMancanti" Type="Edm.Decimal" Precision="19" Scale="3"/>
+</EntityType>
+<EntityType Name="vwKpiTime2">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataInizioLavori" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="GiorniDelta" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="GiorniDeltaPercento" Type="Edm.Int32"/>
+<Property Name="GiorniMancanti" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="GiorniRitardo" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="vwKpiTime3">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="Line" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="Val1" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="Val2" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoListTipologia" Type="Edm.Int32"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="IDProgetto" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Priorita" Type="Edm.Int32"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Avanzamento" Type="Edm.Int32"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataInizioLavori" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="Allegato1" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Allegato2" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="VisibileCliente" Type="Edm.Boolean"/>
+<Property Name="StimaRichiesta" Type="Edm.Boolean"/>
+<Property Name="DataProduzione" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataProduzioneSched" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Fatturato" Type="Edm.Boolean"/>
+<Property Name="BugFix" Type="Edm.Boolean"/>
+<Property Name="GiorniConsCliente" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="Comunicazioni" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoAPrev" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="CR" Type="Edm.Boolean"/>
+<Property Name="AllegatiInArxivar" Type="Edm.Boolean"/>
+<Property Name="CodiceICMS" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniRitardo" Type="Edm.Int32"/>
+<Property Name="GiorniDevMancanti" Type="Edm.Decimal" Precision="19" Scale="3"/>
+<Property Name="GiorniDeltaConsPrev" Type="Edm.Decimal" Precision="19" Scale="3"/>
+</EntityType>
+<EntityType Name="vwKpiToCheck">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+<PropertyRef Name="GiorniDelta"/>
+<PropertyRef Name="GiorniDeltaPercento"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataInizioLavori" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="GiorniDelta" Type="Edm.Int32" Nullable="false"/>
+<Property Name="GiorniDeltaPercento" Type="Edm.Int32" Nullable="false"/>
+</EntityType>
+<EntityType Name="vwRapportiniDev">
+<Key>
+<PropertyRef Name="IDRapportino"/>
+</Key>
+<Property Name="IDRapportino" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDUtente" Type="Edm.Int32"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="IDClienteSede" Type="Edm.Int32"/>
+<Property Name="IDProgetto" Type="Edm.Int32"/>
+<Property Name="IDProgettoAttivita" Type="Edm.Int32"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Attivita" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Sede" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Destinazione" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Giorno" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Ore" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="OreLavorate" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Km" Type="Edm.Int32"/>
+<Property Name="KmEuro" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Pedaggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Forfait" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Vitto" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Alloggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Noleggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Trasporti" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Varie" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Plus" Type="Edm.Boolean"/>
+<Property Name="Fatturabile" Type="Edm.Boolean"/>
+<Property Name="Bloccato" Type="Edm.Boolean"/>
+<Property Name="SpeseVarie" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Docente" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="IDCommessa2" Type="Edm.Int32"/>
+<Property Name="IDTodoList2" Type="Edm.Int32"/>
+<Property Name="Ore2" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Descrizione2" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="BloccatoAdmin" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="vwRapportiniJoin">
+<Key>
+<PropertyRef Name="IDRapportino"/>
+<PropertyRef Name="ElaborazionePaga"/>
+</Key>
+<Property Name="IDRapportino" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDUtente" Type="Edm.Int32"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="IDClienteSede" Type="Edm.Int32"/>
+<Property Name="IDProgetto" Type="Edm.Int32"/>
+<Property Name="IDProgettoAttivita" Type="Edm.Int32"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Attivita" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Sede" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Destinazione" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Giorno" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Ore" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="OreLavorate" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Km" Type="Edm.Int32"/>
+<Property Name="KmEuro" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Pedaggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Forfait" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Vitto" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Alloggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Noleggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Trasporti" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Varie" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Plus" Type="Edm.Boolean"/>
+<Property Name="Fatturabile" Type="Edm.Boolean"/>
+<Property Name="Bloccato" Type="Edm.Boolean"/>
+<Property Name="SpeseVarie" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Cliente" Type="Edm.String" MaxLength="303" FixedLength="false" Unicode="true"/>
+<Property Name="Commessa" Type="Edm.String" MaxLength="301" FixedLength="false" Unicode="true"/>
+<Property Name="Ticket" Type="Edm.String" MaxLength="301" FixedLength="false" Unicode="true"/>
+<Property Name="ClienteSede" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Docente" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="ElaborazionePaga" Type="Edm.Boolean" Nullable="false"/>
+<Property Name="IDCommessa2" Type="Edm.Int32"/>
+<Property Name="IDTodoList2" Type="Edm.Int32"/>
+<Property Name="Ore2" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Descrizione2" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="BloccatoAdmin" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="vwRapportiniNotaSpese">
+<Key>
+<PropertyRef Name="KmEuro"/>
+<PropertyRef Name="Pedaggio"/>
+<PropertyRef Name="Noleggio"/>
+<PropertyRef Name="Trasporti"/>
+<PropertyRef Name="Vitto"/>
+<PropertyRef Name="Alloggio"/>
+<PropertyRef Name="SpeseVarie"/>
+</Key>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Anno" Type="Edm.Int32"/>
+<Property Name="Mese" Type="Edm.Int32"/>
+<Property Name="KmEuro" Type="Edm.Decimal" Nullable="false" Precision="38" Scale="2"/>
+<Property Name="Pedaggio" Type="Edm.Decimal" Nullable="false" Precision="38" Scale="2"/>
+<Property Name="Noleggio" Type="Edm.Decimal" Nullable="false" Precision="38" Scale="2"/>
+<Property Name="Trasporti" Type="Edm.Decimal" Nullable="false" Precision="38" Scale="2"/>
+<Property Name="Vitto" Type="Edm.Decimal" Nullable="false" Precision="38" Scale="2"/>
+<Property Name="Alloggio" Type="Edm.Decimal" Nullable="false" Precision="38" Scale="2"/>
+<Property Name="SpeseVarie" Type="Edm.Decimal" Nullable="false" Precision="38" Scale="2"/>
+</EntityType>
+<EntityType Name="vwRisorseAttive">
+<Key>
+<PropertyRef Name="IDRisorsa"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRisorsa" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Risorsa" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Login" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Email" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Efficienza" Type="Edm.Decimal" Precision="5" Scale="2"/>
+<Property Name="Tempo" Type="Edm.Decimal" Precision="5" Scale="2"/>
+<Property Name="GiorniForfait" Type="Edm.Int32"/>
+<Property Name="TipoAuto" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="LoginICMS" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="Supervisore" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Alert" Type="Edm.Boolean"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+<Property Name="NotaSpese" Type="Edm.Boolean"/>
+<Property Name="SapCodice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="SapCentroDiCosto" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="ElaborazionePaga" Type="Edm.Boolean"/>
+<Property Name="Foto" Type="Edm.String" MaxLength="200" FixedLength="false" Unicode="true"/>
+<Property Name="Tel1" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="Tel2" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="Tel3" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="AreeFunzionali" Type="Edm.String" MaxLength="200" FixedLength="false" Unicode="true"/>
+<Property Name="Attivo" Type="Edm.Boolean"/>
+<Property Name="PresenzeRapportini" Type="Edm.Boolean"/>
+<Property Name="RisorsaOrdinamento" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="MatricolaCedolino" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Permessi" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="NomePc" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Team" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Costo" Type="Edm.Decimal" Precision="18" Scale="0"/>
+<Property Name="DataFineRapporto" Type="Edm.DateTime" Precision="0"/>
+</EntityType>
+<EntityType Name="vwRisorseDev">
+<Key>
+<PropertyRef Name="IDRisorsa"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRisorsa" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Login" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Email" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Efficienza" Type="Edm.Decimal" Precision="5" Scale="2"/>
+<Property Name="Tempo" Type="Edm.Decimal" Precision="5" Scale="2"/>
+</EntityType>
+<EntityType Name="vwTodoListAgenda">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Criticita" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagVisibileCliente" Type="Edm.Boolean"/>
+<Property Name="Commessa" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStimaDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="Expr1" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Cliente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwTodoListAssegnatoA">
+<Key>
+<PropertyRef Name="IDTodoListAssegnatoA"/>
+<PropertyRef Name="IDTodoList"/>
+<PropertyRef Name="AssegnatoA"/>
+<PropertyRef Name="Dev"/>
+</Key>
+<Property Name="IDTodoListAssegnatoA" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="AssegnatoA" Type="Edm.String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Avanzamento" Type="Edm.Int32"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Responsabile" Type="Edm.Boolean"/>
+<Property Name="Dev" Type="Edm.Int32" Nullable="false"/>
+</EntityType>
+<EntityType Name="vwTodoListCoordinatori">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Coordinatore" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Status" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="vwTodoListInLavorazione">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoList" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoListParent" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Criticita" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="FlagBugFix" Type="Edm.Boolean"/>
+<Property Name="FlagCR" Type="Edm.Boolean"/>
+<Property Name="GiorniStimaDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="ChatPubblica" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="ChatPrivata" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="FlagFunz" Type="Edm.Boolean"/>
+<Property Name="FlagDev" Type="Edm.Boolean"/>
+<Property Name="DataSpecifiche" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataSviluppi" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GiorniConsCliente" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataProduzione" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagArxivar" Type="Edm.Boolean"/>
+<Property Name="GiorniConsDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniConsFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="FlagVisibileCliente" Type="Edm.Boolean"/>
+<Property Name="AssegnatoAPrev" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagPadre" Type="Edm.Boolean"/>
+<Property Name="FlagFiglio" Type="Edm.Boolean"/>
+<Property Name="NRilavorazioni" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="vwTodoListJoin">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagVisibileCliente" Type="Edm.Boolean"/>
+<Property Name="DataProduzione" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagBugFix" Type="Edm.Boolean"/>
+<Property Name="GiorniConsCliente" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="ChatPubblica" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoAPrev" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagCR" Type="Edm.Boolean"/>
+<Property Name="FlagArxivar" Type="Edm.Boolean"/>
+<Property Name="IDTodoListParent" Type="Edm.Int32"/>
+<Property Name="ChatPrivata" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="DataSpecifiche" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GiorniConsDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniConsFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataSviluppi" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagDev" Type="Edm.Boolean"/>
+<Property Name="FlagFunz" Type="Edm.Boolean"/>
+<Property Name="Criticita" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="FlagPadre" Type="Edm.Boolean"/>
+<Property Name="FlagFiglio" Type="Edm.Boolean"/>
+<Property Name="NRilavorazioni" Type="Edm.Int32"/>
+<Property Name="SupportoFunzionale" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagNeedDev" Type="Edm.Boolean"/>
+<Property Name="FlagNeedFunz" Type="Edm.Boolean"/>
+<Property Name="Cliente" Type="Edm.String" MaxLength="303" FixedLength="false" Unicode="true"/>
+<Property Name="Commessa" Type="Edm.String" MaxLength="263" FixedLength="false" Unicode="true"/>
+<Property Name="StatusDesc" Type="Edm.String" MaxLength="30" FixedLength="false" Unicode="true"/>
+<Property Name="FlagIngegnerizzabile" Type="Edm.Boolean"/>
+<Property Name="NAllegati" Type="Edm.Int32"/>
+<Property Name="OrdineSap" Type="Edm.String" MaxLength="40" FixedLength="false" Unicode="true"/>
+<Property Name="UltimaModifica" Type="Edm.DateTime" Precision="0"/>
+<Property Name="UltimaModificaUtente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="UltimaModificaCliente" Type="Edm.DateTime" Precision="0"/>
+<Property Name="UltimaModificaUtenteCliente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagAms" Type="Edm.Boolean"/>
+<Property Name="IDTodoListTipologia" Type="Edm.Int32"/>
+<Property Name="InoltraA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="MessageID" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwTodoListPerDev">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property Name="Login" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagVisibileCliente" Type="Edm.Boolean"/>
+<Property Name="DataProduzione" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagBugFix" Type="Edm.Boolean"/>
+<Property Name="GiorniConsCliente" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="ChatPubblica" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoAPrev" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagCR" Type="Edm.Boolean"/>
+<Property Name="FlagArxivar" Type="Edm.Boolean"/>
+<Property Name="IDTodoListParent" Type="Edm.Int32"/>
+<Property Name="ChatPrivata" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="DataSpecifiche" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GiorniConsDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaDev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniStimaFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniConsFunz" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataSviluppi" Type="Edm.DateTime" Precision="3"/>
+<Property Name="FlagDev" Type="Edm.Boolean"/>
+<Property Name="FlagFunz" Type="Edm.Boolean"/>
+<Property Name="Criticita" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="FlagPadre" Type="Edm.Boolean"/>
+<Property Name="FlagFiglio" Type="Edm.Boolean"/>
+<Property Name="NRilavorazioni" Type="Edm.Int32"/>
+<Property Name="SupportoFunzionale" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="FlagNeedDev" Type="Edm.Boolean"/>
+<Property Name="FlagNeedFunz" Type="Edm.Boolean"/>
+<Property Name="FlagIngegnerizzabile" Type="Edm.Boolean"/>
+<Property Name="NAllegati" Type="Edm.Int32"/>
+<Property Name="OrdineSap" Type="Edm.String" MaxLength="40" FixedLength="false" Unicode="true"/>
+<Property Name="UltimaModifica" Type="Edm.DateTime" Precision="0"/>
+<Property Name="UltimaModificaUtente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="UltimaModificaCliente" Type="Edm.DateTime" Precision="0"/>
+<Property Name="UltimaModificaUtenteCliente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="FlagAms" Type="Edm.Boolean"/>
+<Property Name="IDTodoListTipologia" Type="Edm.Int32"/>
+<Property Name="InoltraA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="MessageID" Type="Edm.String" MaxLength="255" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwTodoListWithChangeLog">
+<Key>
+<PropertyRef Name="IDTodoListChangeLog"/>
+</Key>
+<Property Name="IDTodoListChangeLog" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDTodoList" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblPM">
+<Key>
+<PropertyRef Name="IDPM"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDPM" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="Risorse" Type="Edm.String" MaxLength="4000" FixedLength="false" Unicode="true"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Team" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblRisorseEsterne">
+<Key>
+<PropertyRef Name="IDRisorsaEsterna"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRisorsaEsterna" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="RisorsaEsterna" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Email" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Pwd" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="IDClienti" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="IDCommesse" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="ClienteLabel" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="AreeFunzionali" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Rapportini" Type="Edm.Boolean"/>
+<Property Name="Ticket" Type="Edm.Boolean"/>
+<Property Name="Dev" Type="Edm.Boolean"/>
+<Property Name="AssegnatoA" Type="Edm.Boolean"/>
+<Property Name="SupportoFunzionale" Type="Edm.Boolean"/>
+<Property Name="Attivo" Type="Edm.Boolean"/>
+<Property Name="CreaTicket" Type="Edm.Boolean"/>
+<Property Name="Team" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Costo" Type="Edm.Decimal" Precision="18" Scale="0"/>
+<Property Name="Societa" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwRisorseEsterneDev">
+<Key>
+<PropertyRef Name="IDRisorsaEsterna"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRisorsaEsterna" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="RisorsaEsterna" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Email" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwThemisRapportini">
+<Key>
+<PropertyRef Name="IDRapportino"/>
+<PropertyRef Name="ElaborazionePaga"/>
+</Key>
+<Property Name="IDRapportino" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDUtente" Type="Edm.Int32"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="IDClienteSede" Type="Edm.Int32"/>
+<Property Name="IDProgetto" Type="Edm.Int32"/>
+<Property Name="IDProgettoAttivita" Type="Edm.Int32"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Attivita" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Sede" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Destinazione" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Giorno" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Ore" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="OreLavorate" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Km" Type="Edm.Int32"/>
+<Property Name="KmEuro" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Pedaggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Forfait" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Vitto" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Alloggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Noleggio" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Trasporti" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Varie" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Plus" Type="Edm.Boolean"/>
+<Property Name="Fatturabile" Type="Edm.Boolean"/>
+<Property Name="Bloccato" Type="Edm.Boolean"/>
+<Property Name="SpeseVarie" Type="Edm.Decimal" Precision="18" Scale="2"/>
+<Property Name="Cliente" Type="Edm.String" MaxLength="303" FixedLength="false" Unicode="true"/>
+<Property Name="Commessa" Type="Edm.String" MaxLength="301" FixedLength="false" Unicode="true"/>
+<Property Name="Ticket" Type="Edm.String" MaxLength="301" FixedLength="false" Unicode="true"/>
+<Property Name="ClienteSede" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Docente" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="IDCommessa2" Type="Edm.Int32"/>
+<Property Name="IDTodoList2" Type="Edm.Int32"/>
+<Property Name="Ore2" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Descrizione2" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Ruolo" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="BloccatoAdmin" Type="Edm.Boolean"/>
+<Property Name="ElaborazionePaga" Type="Edm.Boolean" Nullable="false"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="tblPianificazione">
+<Key>
+<PropertyRef Name="IDPianificazione"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDPianificazione" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Cliente" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Commessa" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Progetto" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="PM" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GGFunzionale" Type="Edm.Int32"/>
+<Property Name="GGAbap" Type="Edm.Int32"/>
+<Property Name="GGReport" Type="Edm.Int32"/>
+<Property Name="GGTerminalini" Type="Edm.Int32"/>
+<Property Name="GGMes" Type="Edm.Int32"/>
+<Property Name="GGAltro" Type="Edm.Int32"/>
+<Property Name="Note" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="DataInizioAnalisi" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataFineAnalisi" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataInizioSviluppi" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataFineSviluppi" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataInizioFunzionale" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataFineFunzionale" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataGolive" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Approvato" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="sysdiagrams">
+<Key>
+<PropertyRef Name="diagram_id"/>
+</Key>
+<Property Name="name" Type="Edm.String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true"/>
+<Property Name="principal_id" Type="Edm.Int32" Nullable="false"/>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="diagram_id" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="version" Type="Edm.Int32"/>
+<Property Name="definition" Type="Edm.Binary" MaxLength="Max" FixedLength="false"/>
+</EntityType>
+<EntityType Name="View_1">
+<Key>
+<PropertyRef Name="IDTodoList"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoList" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoListTipologia" Type="Edm.Int32"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="IDProgetto" Type="Edm.Int32"/>
+<Property Name="AreaFunzionale" Type="Edm.String" MaxLength="10" FixedLength="false" Unicode="true"/>
+<Property Name="Titolo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Testo" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Priorita" Type="Edm.Int32"/>
+<Property Name="PropostoA" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataConsegnaRichiesta" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Avanzamento" Type="Edm.Int32"/>
+<Property Name="AssegnatoA" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniPrev" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="GiorniCons" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="DataInizioLavori" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataConsegnaSchedulata" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Status" Type="Edm.Int32"/>
+<Property Name="DataChiusura" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Ordinamento" Type="Edm.Int32"/>
+<Property Name="Allegato1" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Allegato2" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="StatusPrev" Type="Edm.Int32"/>
+<Property Name="ExternalID" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="VisibileCliente" Type="Edm.Boolean"/>
+<Property Name="StimaRichiesta" Type="Edm.Boolean"/>
+<Property Name="DataProduzione" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataProduzioneSched" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Fatturato" Type="Edm.Boolean"/>
+<Property Name="BugFix" Type="Edm.Boolean"/>
+<Property Name="GiorniConsCliente" Type="Edm.Decimal" Precision="18" Scale="3"/>
+<Property Name="Comunicazioni" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AssegnatoAPrev" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="CR" Type="Edm.Boolean"/>
+<Property Name="AllegatiInArxivar" Type="Edm.Boolean"/>
+<Property Name="CodiceICMS" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoListParent" Type="Edm.Int32"/>
+<Property Name="GiorniRitardo" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="tblMacroCommesseDate">
+<Key>
+<PropertyRef Name="IDMacroCommessaData"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDMacroCommessaData" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDMacroCommessa" Type="Edm.Int32"/>
+<Property Name="DataDa" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataA" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Tipologia" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Visibile" Type="Edm.Boolean"/>
+<NavigationProperty Name="tblMacroCommesse" Relationship="DB.tblMacroCommessetblMacroCommesseDate" ToRole="tblMacroCommesse" FromRole="tblMacroCommesseDate"/>
+</EntityType>
+<EntityType Name="tblMacroCommesseDateTipologia">
+<Key>
+<PropertyRef Name="IDMacroCommessaDataTipologia"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDMacroCommessaDataTipologia" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Tipologia" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="vwMacroCommesseConDate">
+<Key>
+<PropertyRef Name="IDMacroCommessa"/>
+</Key>
+<Property Name="IDMacroCommessa" Type="Edm.Int32" Nullable="false"/>
+<Property Name="MacroCommessa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="Attivita" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="DataInizio" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataFine" Type="Edm.DateTime" Precision="3"/>
+<Property Name="GGTot" Type="Edm.Int32"/>
+<Property Name="Responsabile" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Stato" Type="Edm.Int32"/>
+<Property Name="Logo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Bloccato" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="vwMacroCommesseDate">
+<Key>
+<PropertyRef Name="IDMacroCommessaData"/>
+</Key>
+<Property Name="IDMacroCommessaData" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDMacroCommessa" Type="Edm.Int32"/>
+<Property Name="DataDa" Type="Edm.DateTime" Precision="0"/>
+<Property Name="DataA" Type="Edm.DateTime" Precision="0"/>
+<Property Name="Tipologia" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Visibile" Type="Edm.Boolean"/>
+<Property Name="Codice" Type="Edm.String" MaxLength="20" FixedLength="false" Unicode="true"/>
+<Property Name="DescrizioneMacroCommessa" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Logo" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Responsabile" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblBadge">
+<Key>
+<PropertyRef Name="IDBadge"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDBadge" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Code" Type="Edm.Int32" Nullable="false"/>
+<Property Name="Stato" Type="Edm.Boolean" Nullable="false"/>
+<Property Name="UltimaModifica" Type="Edm.DateTime" Precision="3"/>
+<NavigationProperty Name="tblVisite" Relationship="DB.FK_tblVisite_tblBadge" ToRole="tblVisite" FromRole="tblBadge"/>
+</EntityType>
+<EntityType Name="tblVisite">
+<Key>
+<PropertyRef Name="IDVisita"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDVisita" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Insertdate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="IDCliente" Type="Edm.Int32"/>
+<Property Name="Cliente" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="Visitatore" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="DataIngresso" Type="Edm.DateTime" Precision="3"/>
+<Property Name="DataUscita" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Referente" Type="Edm.String" MaxLength="100" FixedLength="false" Unicode="true"/>
+<Property Name="Firma" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Guid" Type="Edm.Guid"/>
+<Property Name="IDBadge" Type="Edm.Int32"/>
+<Property Name="Email" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<NavigationProperty Name="tblBadge" Relationship="DB.FK_tblVisite_tblBadge" ToRole="tblBadge" FromRole="tblVisite"/>
+</EntityType>
+<EntityType Name="tblAllocazione">
+<Key>
+<PropertyRef Name="IDAllocazione"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDAllocazione" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="MacroCommessa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Team" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Data1" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Giorni1" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni2" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni3" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni4" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni5" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni6" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni7" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni8" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni9" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni10" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni11" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni12" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni13" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Totale" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Commento" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Bloccato" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblAllocazioneStorico">
+<Key>
+<PropertyRef Name="IDAllocazioneStorico"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDAllocazioneStorico" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="MacroCommessa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Team" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Data" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Giorni" Type="Edm.Decimal" Precision="18" Scale="1"/>
+</EntityType>
+<EntityType Name="tblAllocazioneThemis">
+<Key>
+<PropertyRef Name="IDAllocazione"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDAllocazione" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDCliente" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="Team" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Data1" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Giorni1" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni2" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni3" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni4" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni5" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni6" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni7" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni8" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni9" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni10" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni11" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni12" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Giorni13" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Totale" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Commento" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblAllocazioneThemisStorico">
+<Key>
+<PropertyRef Name="IDAllocazioneStorico"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDAllocazioneStorico" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDCliente" Type="Edm.Int32" Nullable="false"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Team" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Data" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Giorni" Type="Edm.Decimal" Precision="18" Scale="1"/>
+</EntityType>
+<EntityType Name="tblAutorizzazioni">
+<Key>
+<PropertyRef Name="IDAutorizzazione"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDAutorizzazione" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Chiave" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="TableName" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="TableKey" Type="Edm.Int32"/>
+<Property Name="NeedAdmin" Type="Edm.Boolean"/>
+<Property Name="NeedPM" Type="Edm.Boolean"/>
+<Property Name="NeedCEO" Type="Edm.Boolean"/>
+<Property Name="NeedManager" Type="Edm.Boolean"/>
+</EntityType>
+<EntityType Name="tblNonConformita">
+<Key>
+<PropertyRef Name="IDNonConformita"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDNonConformita" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Numero" Type="Edm.Int32"/>
+<Property Name="Data" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Cliente" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="Progetto" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="SegnalazioneDi" Type="Edm.String" MaxLength="150" FixedLength="false" Unicode="true"/>
+<Property Name="AreaRilevamento" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Oggetto" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="Difetto" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="CompilatoDa" Type="Edm.String" MaxLength="10" FixedLength="true" Unicode="true"/>
+<Property Name="CompilatoIl" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Firma" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Risoluzione" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="CompilatoDa2" Type="Edm.String" MaxLength="10" FixedLength="true" Unicode="true"/>
+<Property Name="CompilatoIl2" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Firma2" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="VerificaOk" Type="Edm.Boolean"/>
+<Property Name="Note" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="CompilatoDa3" Type="Edm.String" MaxLength="10" FixedLength="true" Unicode="true"/>
+<Property Name="CompilatoIl3" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Firma3" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="AnalisiCause" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="AzioniCorrettive" Type="Edm.Boolean"/>
+<Property Name="CompilatoDa4" Type="Edm.String" MaxLength="10" FixedLength="true" Unicode="true"/>
+<Property Name="CompilatoIl4" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Firma4" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblRapportiniAllegati">
+<Key>
+<PropertyRef Name="IDRapportinoAllegato"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRapportinoAllegato" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDRapportino" Type="Edm.Int32"/>
+<Property Name="Allegato" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblRapportiniRecording">
+<Key>
+<PropertyRef Name="IDRapportinoRecording"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDRapportinoRecording" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+<Property Name="StartDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="EndDate" Type="Edm.DateTime" Precision="3"/>
+</EntityType>
+<EntityType Name="tblRapportiniSblocchi">
+<Key>
+<PropertyRef Name="IDSblocco"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDSblocco" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="InsertDate" Type="Edm.DateTime" Precision="3"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Anno" Type="Edm.Int32"/>
+<Property Name="Mese" Type="Edm.Int32"/>
+<Property Name="Causa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+<Property Name="Approvato" Type="Edm.Boolean"/>
+<Property Name="DataApprovazione" Type="Edm.DateTime" Precision="0"/>
+<Property Name="ApprovatoDa" Type="Edm.String" MaxLength="50" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblTeam">
+<Key>
+<PropertyRef Name="IDTeam"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTeam" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Descrizione" Type="Edm.String" MaxLength="250" FixedLength="false" Unicode="true"/>
+</EntityType>
+<EntityType Name="tblCommesseOrdini">
+<Key>
+<PropertyRef Name="IDCommessaOrdine"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDCommessaOrdine" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="IDCommessa" Type="Edm.Int32"/>
+<Property Name="NumeroOrdine" Type="Edm.String" MaxLength="40" FixedLength="false" Unicode="true"/>
+<Property Name="RigaOrdine" Type="Edm.Int32"/>
+<Property Name="FixOrTimeMaterial" Type="Edm.String" MaxLength="2" FixedLength="false" Unicode="true"/>
+<Property Name="GiorniStima" Type="Edm.Decimal" Precision="18" Scale="1"/>
+<Property Name="Risorse" Type="Edm.String" MaxLength="Max" FixedLength="false" Unicode="true"/>
+<Property Name="FlagDefault" Type="Edm.Boolean"/>
+<Property Name="IDSocieta" Type="Edm.Int32"/>
+<Property Name="Stato" Type="Edm.Int32"/>
+</EntityType>
+<EntityType Name="tblTodoListFavourites">
+<Key>
+<PropertyRef Name="IDTodoListFavourite"/>
+</Key>
+<Property xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="IDTodoListFavourite" Type="Edm.Int32" Nullable="false" p6:StoreGeneratedPattern="Identity"/>
+<Property Name="Utente" Type="Edm.String" MaxLength="200" FixedLength="false" Unicode="true"/>
+<Property Name="IDTodoList" Type="Edm.Int32"/>
+</EntityType>
+<Association Name="FK_tblCommesseDate_tblCommesse">
+<End Type="DB.tblCommesse" Role="tblCommesse" Multiplicity="0..1"/>
+<End Type="DB.tblCommesseDate" Role="tblCommesseDate" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblCommesse">
+<PropertyRef Name="IDCommessa"/>
+</Principal>
+<Dependent Role="tblCommesseDate">
+<PropertyRef Name="IDCommessa"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblAttivitatblAttivitaCommesse">
+<End Type="DB.tblAttivita" Role="tblAttivita" Multiplicity="1"/>
+<End Type="DB.tblAttivitaCommesse" Role="tblAttivitaCommesse" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblAttivita">
+<PropertyRef Name="IDAttivita"/>
+</Principal>
+<Dependent Role="tblAttivitaCommesse">
+<PropertyRef Name="IDAttivita"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblCommessetblAttivitaCommesse">
+<End Type="DB.tblCommesse" Role="tblCommesse" Multiplicity="1"/>
+<End Type="DB.tblAttivitaCommesse" Role="tblAttivitaCommesse" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblCommesse">
+<PropertyRef Name="IDCommessa"/>
+</Principal>
+<Dependent Role="tblAttivitaCommesse">
+<PropertyRef Name="IDCommessa"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="FK_tblCommesse_tblClienti">
+<End Type="DB.tblClienti" Role="tblClienti" Multiplicity="0..1"/>
+<End Type="DB.tblCommesse" Role="tblCommesse" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblClienti">
+<PropertyRef Name="IDCliente"/>
+</Principal>
+<Dependent Role="tblCommesse">
+<PropertyRef Name="IDCliente"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="FK_tblRapportini_tblClienti">
+<End Type="DB.tblClienti" Role="tblClienti" Multiplicity="0..1"/>
+<End Type="DB.tblRapportini" Role="tblRapportini" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblClienti">
+<PropertyRef Name="IDCliente"/>
+</Principal>
+<Dependent Role="tblRapportini">
+<PropertyRef Name="IDCliente"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblClientitblTodoList">
+<End Type="DB.tblClienti" Role="tblClienti" Multiplicity="0..1"/>
+<End Type="DB.tblTodoList" Role="tblTodoList" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblClienti">
+<PropertyRef Name="IDCliente"/>
+</Principal>
+<Dependent Role="tblTodoList">
+<PropertyRef Name="IDCliente"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblClientitblMacroCommesse">
+<End Type="DB.tblClienti" Role="tblClienti" Multiplicity="0..1"/>
+<End Type="DB.tblMacroCommesse" Role="tblMacroCommesse" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblClienti">
+<PropertyRef Name="IDCliente"/>
+</Principal>
+<Dependent Role="tblMacroCommesse">
+<PropertyRef Name="IDCliente"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="FK_tblRapportini_tblCommesse">
+<End Type="DB.tblCommesse" Role="tblCommesse" Multiplicity="0..1"/>
+<End Type="DB.tblRapportini" Role="tblRapportini" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblCommesse">
+<PropertyRef Name="IDCommessa"/>
+</Principal>
+<Dependent Role="tblRapportini">
+<PropertyRef Name="IDCommessa"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblCommessetblTodoList">
+<End Type="DB.tblCommesse" Role="tblCommesse" Multiplicity="0..1"/>
+<End Type="DB.tblTodoList" Role="tblTodoList" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblCommesse">
+<PropertyRef Name="IDCommessa"/>
+</Principal>
+<Dependent Role="tblTodoList">
+<PropertyRef Name="IDCommessa"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblRisorseAllocazionetblCommesse">
+<End Type="DB.tblCommesse" Role="tblCommesse" Multiplicity="0..1"/>
+<End Type="DB.tblRisorseAllocazione" Role="tblRisorseAllocazione" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblCommesse">
+<PropertyRef Name="IDCommessa"/>
+</Principal>
+<Dependent Role="tblRisorseAllocazione">
+<PropertyRef Name="IDCommessa"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblMacroCommessetblMacroCommesseDate">
+<End Type="DB.tblMacroCommesse" Role="tblMacroCommesse" Multiplicity="0..1"/>
+<End Type="DB.tblMacroCommesseDate" Role="tblMacroCommesseDate" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblMacroCommesse">
+<PropertyRef Name="IDMacroCommessa"/>
+</Principal>
+<Dependent Role="tblMacroCommesseDate">
+<PropertyRef Name="IDMacroCommessa"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblClientiSeditblRapportini">
+<End Type="DB.tblClientiSedi" Role="tblClientiSedi" Multiplicity="0..1"/>
+<End Type="DB.tblRapportini" Role="tblRapportini" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblClientiSedi">
+<PropertyRef Name="IDClienteSede"/>
+</Principal>
+<Dependent Role="tblRapportini">
+<PropertyRef Name="IDClienteSede"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblRisorsetblSocieta">
+<End Type="DB.tblRisorse" Role="tblRisorse" Multiplicity="1"/>
+<End Type="DB.tblSocieta" Role="tblSocieta" Multiplicity="0..1"/>
+<ReferentialConstraint>
+<Principal Role="tblRisorse">
+<PropertyRef Name="IDRisorsa"/>
+</Principal>
+<Dependent Role="tblSocieta">
+<PropertyRef Name="IDSocieta"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblRisorseAllocazionetblClienti">
+<End Type="DB.tblClienti" Role="tblClienti" Multiplicity="0..1"/>
+<End Type="DB.tblRisorseAllocazione" Role="tblRisorseAllocazione" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblClienti">
+<PropertyRef Name="IDCliente"/>
+</Principal>
+<Dependent Role="tblRisorseAllocazione">
+<PropertyRef Name="IDCliente"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblTodoListtblTodoListAllegati">
+<End Type="DB.tblTodoList" Role="tblTodoList" Multiplicity="0..1"/>
+<End Type="DB.tblTodoListAllegati" Role="tblTodoListAllegati" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblTodoList">
+<PropertyRef Name="IDTodoList"/>
+</Principal>
+<Dependent Role="tblTodoListAllegati">
+<PropertyRef Name="IDTodoList"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblTodoListtblTodoListAssegnatoA">
+<End Type="DB.tblTodoList" Role="tblTodoList" Multiplicity="1"/>
+<End Type="DB.tblTodoListAssegnatoA" Role="tblTodoListAssegnatoA" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblTodoList">
+<PropertyRef Name="IDTodoList"/>
+</Principal>
+<Dependent Role="tblTodoListAssegnatoA">
+<PropertyRef Name="IDTodoList"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="tblTodoListtblTodoListStatus">
+<End Type="DB.tblTodoListStatus" Role="tblTodoListStatus" Multiplicity="0..1"/>
+<End Type="DB.tblTodoList" Role="tblTodoList" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblTodoListStatus">
+<PropertyRef Name="IDTodoListStatus"/>
+</Principal>
+<Dependent Role="tblTodoList">
+<PropertyRef Name="Status"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="FK_tblVisite_tblBadge">
+<End Type="DB.tblBadge" Role="tblBadge" Multiplicity="0..1"/>
+<End Type="DB.tblVisite" Role="tblVisite" Multiplicity="*"/>
+<ReferentialConstraint>
+<Principal Role="tblBadge">
+<PropertyRef Name="IDBadge"/>
+</Principal>
+<Dependent Role="tblVisite">
+<PropertyRef Name="IDBadge"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+</Schema>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="RegestaCockpitOdata">
+<EntityContainer xmlns:p6="http://schemas.microsoft.com/ado/2009/02/edm/annotation" Name="DBContainer" m:IsDefaultEntityContainer="true" p6:LazyLoadingEnabled="true">
+<EntitySet Name="tblCommesseDate" EntityType="DB.tblCommesseDate"/>
+<EntitySet Name="tblCommesseDateTipologia" EntityType="DB.tblCommesseDateTipologia"/>
+<EntitySet Name="tblFestivi" EntityType="DB.tblFestivi"/>
+<EntitySet Name="tblAbbonamenti" EntityType="DB.tblAbbonamenti"/>
+<EntitySet Name="tblAreeFunzionali" EntityType="DB.tblAreeFunzionali"/>
+<EntitySet Name="tblAttivita" EntityType="DB.tblAttivita"/>
+<EntitySet Name="tblAttivitaCommesse" EntityType="DB.tblAttivitaCommesse"/>
+<EntitySet Name="tblBugs" EntityType="DB.tblBugs"/>
+<EntitySet Name="tblClienti" EntityType="DB.tblClienti"/>
+<EntitySet Name="tblClientiAreeFunzionali" EntityType="DB.tblClientiAreeFunzionali"/>
+<EntitySet Name="tblClientiLogin" EntityType="DB.tblClientiLogin"/>
+<EntitySet Name="tblClientiSedi" EntityType="DB.tblClientiSedi"/>
+<EntitySet Name="tblCommesse" EntityType="DB.tblCommesse"/>
+<EntitySet Name="tblComunicazioni" EntityType="DB.tblComunicazioni"/>
+<EntitySet Name="tblConfig" EntityType="DB.tblConfig"/>
+<EntitySet Name="tblCoordinatori" EntityType="DB.tblCoordinatori"/>
+<EntitySet Name="tblDocumenti" EntityType="DB.tblDocumenti"/>
+<EntitySet Name="tblFerie" EntityType="DB.tblFerie"/>
+<EntitySet Name="tblIdeas" EntityType="DB.tblIdeas"/>
+<EntitySet Name="tblLog" EntityType="DB.tblLog"/>
+<EntitySet Name="tblLogEmail" EntityType="DB.tblLogEmail"/>
+<EntitySet Name="tblMacroCommesse" EntityType="DB.tblMacroCommesse"/>
+<EntitySet Name="tblPrenotazioneMateriale" EntityType="DB.tblPrenotazioneMateriale"/>
+<EntitySet Name="tblRapportini" EntityType="DB.tblRapportini"/>
+<EntitySet Name="tblRisorse" EntityType="DB.tblRisorse"/>
+<EntitySet Name="tblRisorseAllocazione" EntityType="DB.tblRisorseAllocazione"/>
+<EntitySet Name="tblSkills" EntityType="DB.tblSkills"/>
+<EntitySet Name="tblSkillsRisorse" EntityType="DB.tblSkillsRisorse"/>
+<EntitySet Name="tblSocieta" EntityType="DB.tblSocieta"/>
+<EntitySet Name="tblTempTodoList" EntityType="DB.tblTempTodoList"/>
+<EntitySet Name="tblTodoList" EntityType="DB.tblTodoList"/>
+<EntitySet Name="tblTodoListAllegati" EntityType="DB.tblTodoListAllegati"/>
+<EntitySet Name="tblTodoListAssegnatoA" EntityType="DB.tblTodoListAssegnatoA"/>
+<EntitySet Name="tblTodoListAssegnatoAChangeLog" EntityType="DB.tblTodoListAssegnatoAChangeLog"/>
+<EntitySet Name="tblTodoListAssegnatoATmp" EntityType="DB.tblTodoListAssegnatoATmp"/>
+<EntitySet Name="tblTodoListChangeLog" EntityType="DB.tblTodoListChangeLog"/>
+<EntitySet Name="tblTodoListQualita" EntityType="DB.tblTodoListQualita"/>
+<EntitySet Name="tblTodoListRuoli" EntityType="DB.tblTodoListRuoli"/>
+<EntitySet Name="tblTodoListWorkflow" EntityType="DB.tblTodoListWorkflow"/>
+<EntitySet Name="tblVarianti" EntityType="DB.tblVarianti"/>
+<EntitySet Name="tblTodoListStatus" EntityType="DB.tblTodoListStatus"/>
+<EntitySet Name="vwAttivitaCommesse" EntityType="DB.vwAttivitaCommesse"/>
+<EntitySet Name="vwClienti" EntityType="DB.vwClienti"/>
+<EntitySet Name="vwCommesseAperte" EntityType="DB.vwCommesseAperte"/>
+<EntitySet Name="vwCommesseDate" EntityType="DB.vwCommesseDate"/>
+<EntitySet Name="vwCommesseOrePerDev" EntityType="DB.vwCommesseOrePerDev"/>
+<EntitySet Name="vwCommesseOreTotali" EntityType="DB.vwCommesseOreTotali"/>
+<EntitySet Name="vwCommesseOreTotaliDev" EntityType="DB.vwCommesseOreTotaliDev"/>
+<EntitySet Name="vwCommesseOreTotaliPiuDev" EntityType="DB.vwCommesseOreTotaliPiuDev"/>
+<EntitySet Name="vwKpiBase" EntityType="DB.vwKpiBase"/>
+<EntitySet Name="vwKpiBase2" EntityType="DB.vwKpiBase2"/>
+<EntitySet Name="vwKpiBudget" EntityType="DB.vwKpiBudget"/>
+<EntitySet Name="vwKpiTime" EntityType="DB.vwKpiTime"/>
+<EntitySet Name="vwKpiTime2" EntityType="DB.vwKpiTime2"/>
+<EntitySet Name="vwKpiTime3" EntityType="DB.vwKpiTime3"/>
+<EntitySet Name="vwKpiToCheck" EntityType="DB.vwKpiToCheck"/>
+<EntitySet Name="vwRapportiniDev" EntityType="DB.vwRapportiniDev"/>
+<EntitySet Name="vwRapportiniJoin" EntityType="DB.vwRapportiniJoin"/>
+<EntitySet Name="vwRapportiniNotaSpese" EntityType="DB.vwRapportiniNotaSpese"/>
+<EntitySet Name="vwRisorseAttive" EntityType="DB.vwRisorseAttive"/>
+<EntitySet Name="vwRisorseDev" EntityType="DB.vwRisorseDev"/>
+<EntitySet Name="vwTodoListAgenda" EntityType="DB.vwTodoListAgenda"/>
+<EntitySet Name="vwTodoListAssegnatoA" EntityType="DB.vwTodoListAssegnatoA"/>
+<EntitySet Name="vwTodoListCoordinatori" EntityType="DB.vwTodoListCoordinatori"/>
+<EntitySet Name="vwTodoListInLavorazione" EntityType="DB.vwTodoListInLavorazione"/>
+<EntitySet Name="vwTodoListJoin" EntityType="DB.vwTodoListJoin"/>
+<EntitySet Name="vwTodoListPerDev" EntityType="DB.vwTodoListPerDev"/>
+<EntitySet Name="vwTodoListWithChangeLog" EntityType="DB.vwTodoListWithChangeLog"/>
+<EntitySet Name="tblPM" EntityType="DB.tblPM"/>
+<EntitySet Name="tblRisorseEsterne" EntityType="DB.tblRisorseEsterne"/>
+<EntitySet Name="vwRisorseEsterneDev" EntityType="DB.vwRisorseEsterneDev"/>
+<EntitySet Name="vwThemisRapportini" EntityType="DB.vwThemisRapportini"/>
+<EntitySet Name="tblPianificazione" EntityType="DB.tblPianificazione"/>
+<EntitySet Name="sysdiagrams" EntityType="DB.sysdiagrams"/>
+<EntitySet Name="View_1" EntityType="DB.View_1"/>
+<EntitySet Name="tblMacroCommesseDate" EntityType="DB.tblMacroCommesseDate"/>
+<EntitySet Name="tblMacroCommesseDateTipologia" EntityType="DB.tblMacroCommesseDateTipologia"/>
+<EntitySet Name="vwMacroCommesseConDate" EntityType="DB.vwMacroCommesseConDate"/>
+<EntitySet Name="vwMacroCommesseDate" EntityType="DB.vwMacroCommesseDate"/>
+<EntitySet Name="tblBadge" EntityType="DB.tblBadge"/>
+<EntitySet Name="tblVisite" EntityType="DB.tblVisite"/>
+<EntitySet Name="tblAllocazione" EntityType="DB.tblAllocazione"/>
+<EntitySet Name="tblAllocazioneStorico" EntityType="DB.tblAllocazioneStorico"/>
+<EntitySet Name="tblAllocazioneThemis" EntityType="DB.tblAllocazioneThemis"/>
+<EntitySet Name="tblAllocazioneThemisStorico" EntityType="DB.tblAllocazioneThemisStorico"/>
+<EntitySet Name="tblAutorizzazioni" EntityType="DB.tblAutorizzazioni"/>
+<EntitySet Name="tblNonConformita" EntityType="DB.tblNonConformita"/>
+<EntitySet Name="tblRapportiniAllegati" EntityType="DB.tblRapportiniAllegati"/>
+<EntitySet Name="tblRapportiniRecording" EntityType="DB.tblRapportiniRecording"/>
+<EntitySet Name="tblRapportiniSblocchi" EntityType="DB.tblRapportiniSblocchi"/>
+<EntitySet Name="tblTeam" EntityType="DB.tblTeam"/>
+<EntitySet Name="tblCommesseOrdini" EntityType="DB.tblCommesseOrdini"/>
+<EntitySet Name="tblTodoListFavourites" EntityType="DB.tblTodoListFavourites"/>
+<AssociationSet Name="FK_tblCommesseDate_tblCommesse" Association="DB.FK_tblCommesseDate_tblCommesse">
+<End Role="tblCommesseDate" EntitySet="tblCommesseDate"/>
+<End Role="tblCommesse" EntitySet="tblCommesse"/>
+</AssociationSet>
+<AssociationSet Name="tblAttivitatblAttivitaCommesse" Association="DB.tblAttivitatblAttivitaCommesse">
+<End Role="tblAttivita" EntitySet="tblAttivita"/>
+<End Role="tblAttivitaCommesse" EntitySet="tblAttivitaCommesse"/>
+</AssociationSet>
+<AssociationSet Name="tblCommessetblAttivitaCommesse" Association="DB.tblCommessetblAttivitaCommesse">
+<End Role="tblAttivitaCommesse" EntitySet="tblAttivitaCommesse"/>
+<End Role="tblCommesse" EntitySet="tblCommesse"/>
+</AssociationSet>
+<AssociationSet Name="FK_tblCommesse_tblClienti" Association="DB.FK_tblCommesse_tblClienti">
+<End Role="tblClienti" EntitySet="tblClienti"/>
+<End Role="tblCommesse" EntitySet="tblCommesse"/>
+</AssociationSet>
+<AssociationSet Name="FK_tblRapportini_tblClienti" Association="DB.FK_tblRapportini_tblClienti">
+<End Role="tblClienti" EntitySet="tblClienti"/>
+<End Role="tblRapportini" EntitySet="tblRapportini"/>
+</AssociationSet>
+<AssociationSet Name="tblClientitblTodoList" Association="DB.tblClientitblTodoList">
+<End Role="tblClienti" EntitySet="tblClienti"/>
+<End Role="tblTodoList" EntitySet="tblTodoList"/>
+</AssociationSet>
+<AssociationSet Name="tblClientitblMacroCommesse" Association="DB.tblClientitblMacroCommesse">
+<End Role="tblClienti" EntitySet="tblClienti"/>
+<End Role="tblMacroCommesse" EntitySet="tblMacroCommesse"/>
+</AssociationSet>
+<AssociationSet Name="FK_tblRapportini_tblCommesse" Association="DB.FK_tblRapportini_tblCommesse">
+<End Role="tblCommesse" EntitySet="tblCommesse"/>
+<End Role="tblRapportini" EntitySet="tblRapportini"/>
+</AssociationSet>
+<AssociationSet Name="tblCommessetblTodoList" Association="DB.tblCommessetblTodoList">
+<End Role="tblCommesse" EntitySet="tblCommesse"/>
+<End Role="tblTodoList" EntitySet="tblTodoList"/>
+</AssociationSet>
+<AssociationSet Name="tblRisorseAllocazionetblCommesse" Association="DB.tblRisorseAllocazionetblCommesse">
+<End Role="tblCommesse" EntitySet="tblCommesse"/>
+<End Role="tblRisorseAllocazione" EntitySet="tblRisorseAllocazione"/>
+</AssociationSet>
+<AssociationSet Name="tblMacroCommessetblMacroCommesseDate" Association="DB.tblMacroCommessetblMacroCommesseDate">
+<End Role="tblMacroCommesse" EntitySet="tblMacroCommesse"/>
+<End Role="tblMacroCommesseDate" EntitySet="tblMacroCommesseDate"/>
+</AssociationSet>
+<AssociationSet Name="tblClientiSeditblRapportini" Association="DB.tblClientiSeditblRapportini">
+<End Role="tblRapportini" EntitySet="tblRapportini"/>
+<End Role="tblClientiSedi" EntitySet="tblClientiSedi"/>
+</AssociationSet>
+<AssociationSet Name="tblRisorsetblSocieta" Association="DB.tblRisorsetblSocieta">
+<End Role="tblRisorse" EntitySet="tblRisorse"/>
+<End Role="tblSocieta" EntitySet="tblSocieta"/>
+</AssociationSet>
+<AssociationSet Name="tblRisorseAllocazionetblClienti" Association="DB.tblRisorseAllocazionetblClienti">
+<End Role="tblRisorseAllocazione" EntitySet="tblRisorseAllocazione"/>
+<End Role="tblClienti" EntitySet="tblClienti"/>
+</AssociationSet>
+<AssociationSet Name="tblTodoListtblTodoListAllegati" Association="DB.tblTodoListtblTodoListAllegati">
+<End Role="tblTodoList" EntitySet="tblTodoList"/>
+<End Role="tblTodoListAllegati" EntitySet="tblTodoListAllegati"/>
+</AssociationSet>
+<AssociationSet Name="tblTodoListtblTodoListAssegnatoA" Association="DB.tblTodoListtblTodoListAssegnatoA">
+<End Role="tblTodoList" EntitySet="tblTodoList"/>
+<End Role="tblTodoListAssegnatoA" EntitySet="tblTodoListAssegnatoA"/>
+</AssociationSet>
+<AssociationSet Name="tblTodoListtblTodoListStatus" Association="DB.tblTodoListtblTodoListStatus">
+<End Role="tblTodoList" EntitySet="tblTodoList"/>
+<End Role="tblTodoListStatus" EntitySet="tblTodoListStatus"/>
+</AssociationSet>
+<AssociationSet Name="FK_tblVisite_tblBadge" Association="DB.FK_tblVisite_tblBadge">
+<End Role="tblBadge" EntitySet="tblBadge"/>
+<End Role="tblVisite" EntitySet="tblVisite"/>
+</AssociationSet>
+</EntityContainer>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>
