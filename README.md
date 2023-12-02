@@ -18,15 +18,15 @@ L'applicazione sarà raggiungibile all'URL http://localhost:4004/ se la porta no
 ### GraphQL
 
 L'applicazione espone di default un servizio OData, ma è possibile abilitare anche l'esposizione del servizio tramite **GraphQL**[^1] attraverso l'npm package **@cap-js/graphql**[^2], già presente tra le dipendenze dell'app.
-Sarà sufficiente annotare il servizio TicketsService tramite l'annotation `@graphql`:
+Sarà sufficiente annotare il servizio `TicketsService` tramite l'annotation `@graphql`:
 ```cds
 using {regesta.cap.reports  as  model} from  '../db/data-model';
 
 @graphql
 service  TicketsService {
-	entity  Tickets  as  projection  on  model.Tickets;
-	entity  Reports  as  projection  on  model.Reports;
-	entity  Children as  projection  on  model.Children;
+    entity  Tickets  as  projection  on  model.Tickets;
+    entity  Reports  as  projection  on  model.Reports;
+    entity  Children as  projection  on  model.Children;
 }
 ```
 Per raggiungere il servizio esposto, bisognerà navigare all'URL http://localhost:4004/graphql. Non verrà servita la classica pagina di default con i servizi disponibili, bensì **GraphiQL**, un client per il test delle query in GraphQL.
