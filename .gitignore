@@ -1,7 +1,7 @@
 # CAP reg-reports
 _out
 *.db
-*.sqlite
+*.sqlite*
 connection.properties
 .env
 default-*.json
