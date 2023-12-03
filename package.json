@@ -26,7 +26,7 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "url": "db.sqlite"
+          "url": "reg-reports.sqlite"
         }
       },
       "API_TICKETS": {
@@ -34,9 +34,5 @@
         "model": "srv/external/API_TICKETS"
       }
     }
-  },
-  "sapux": [
-    "app/reg-reports",
-    "app/react-reports"
-  ]
+  }
 }

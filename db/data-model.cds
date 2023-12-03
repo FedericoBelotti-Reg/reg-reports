@@ -11,16 +11,16 @@ namespace regesta.cap.reports;
 entity Tickets as
     projection on api.vwTodoListJoin {
         key IDTodoList as ID,
-            Titolo     as Title,
-            IDCommessa as OrderId,
-            Commessa   as Order,
-            IDCliente  as CustomerId,
-            Cliente    as Customer,
-            Reports : Association to many Reports on Reports.Ticket = $self
+            Titolo     as title,
+            IDCommessa as orderId,
+            Commessa   as order,
+            IDCliente  as customerId,
+            Cliente    as customer,
+            reports : Association to many Reports on reports.ticket = $self
     }
 
 entity Reports : cuid, managed {
-    Description : String;
-    ElapsedTime : Time;
-    Ticket      : Association to Tickets;
+    description : String;
+    elapsedTime : Time;
+    ticket      : Association to Tickets;
 }

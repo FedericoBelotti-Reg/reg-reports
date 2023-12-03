@@ -10,6 +10,7 @@ gen/
 node_modules/
 target/
 test/
+db/data/
 
 # Web IDE, App Studio
 .che/
