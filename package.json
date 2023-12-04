@@ -26,7 +26,7 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "url": "reg-reports.sqlite"
+          "url": "db/reg-reports.sqlite"
         }
       },
       "API_TICKETS": {

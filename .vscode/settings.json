@@ -3,8 +3,8 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            "name": "reg-reports",
-            "database": "reg-reports.sqlite"
+            "name": "reg-reports SQLite",
+            "database": "db/reg-reports.sqlite"
         }
     ]
 }
